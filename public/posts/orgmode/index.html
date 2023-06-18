@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>orgmode | </title>
+<meta name="keywords" content="">
+<meta name="description" content="文档结构 列表 无序列表 使用&quot;*&ldquo;号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了. 示例: 列表1 列表2 列表3 使用&rdquo;&#43;&ldquo;号或&rdquo;-&ldquo;号的列表与*号用法基本一致,唯一不同的是可以位于行首 有序列表有序列表使用&quot;1.&ldquo;或者&quot;1)&ldquo;开头示例: 第一 fsdaf fdsja 第二 第三 结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表. 常用操作与快捷键 &lt;tab&gt; 对列表进行收缩或展开 M-RET 在该列表下方新建一个与该列表同级的列表. 注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表. M-S-RET 在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似. S-UP和S-DOWN M-UP和M-DOWN 移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动. M-LEFT和M-RIGHT 提升或者降低列表的级别.不会连同子列表一起移动. M-S-LEFT和M-S-RIGHT 提升或者降低列表的级别.会连同子列表一起移动 C-c C-c 与复选框相关的操作 C-c - 修改与当前列表同级的表示方式,使它们的表示方式在&rdquo;-,&#43;,*,1.,1)&ldquo;中循环切换.如果有选中区域的话则只对该区域内的列表有效. C-c * 将当前列表修改为标题,使其下与其同级别的列表成为它的子项 C-c C-* 将当前列表级别一致的列表修改为缩进一致的标题. S-LEFT和S-RIGHT 修改列表与当前列表同级别的表示方式,在&rdquo;-,&#43;,*,1.,1)&ldquo;切换. 注意:使用此操作是需要将光标移动到表示列表的符号上. C-c ^ 对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序. drawer 简介 drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.
+示例
+drawer的内容
+常用操作与快捷键
+插入一个drawer C-c C-x d 插入一个带有时间的drawer C-c C-z block 简介 block通常用于存放代码块和一些示例,以&rdquo;#&#43;BEGIN&quot;开头,中间写入内容,以&rdquo;#&#43;END&quot;结尾. 示例 引用块
+引用内容
+示例块 示例">
+<meta name="author" content="geezer">
+<link rel="canonical" href="/posts/orgmode/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="orgmode" />
+<meta property="og:description" content="文档结构 列表 无序列表 使用&quot;*&ldquo;号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了. 示例: 列表1 列表2 列表3 使用&rdquo;&#43;&ldquo;号或&rdquo;-&ldquo;号的列表与*号用法基本一致,唯一不同的是可以位于行首 有序列表有序列表使用&quot;1.&ldquo;或者&quot;1)&ldquo;开头示例: 第一 fsdaf fdsja 第二 第三 结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表. 常用操作与快捷键 &lt;tab&gt; 对列表进行收缩或展开 M-RET 在该列表下方新建一个与该列表同级的列表. 注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表. M-S-RET 在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似. S-UP和S-DOWN M-UP和M-DOWN 移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动. M-LEFT和M-RIGHT 提升或者降低列表的级别.不会连同子列表一起移动. M-S-LEFT和M-S-RIGHT 提升或者降低列表的级别.会连同子列表一起移动 C-c C-c 与复选框相关的操作 C-c - 修改与当前列表同级的表示方式,使它们的表示方式在&rdquo;-,&#43;,*,1.,1)&ldquo;中循环切换.如果有选中区域的话则只对该区域内的列表有效. C-c * 将当前列表修改为标题,使其下与其同级别的列表成为它的子项 C-c C-* 将当前列表级别一致的列表修改为缩进一致的标题. S-LEFT和S-RIGHT 修改列表与当前列表同级别的表示方式,在&rdquo;-,&#43;,*,1.,1)&ldquo;切换. 注意:使用此操作是需要将光标移动到表示列表的符号上. C-c ^ 对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序. drawer 简介 drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.
+示例
+drawer的内容
+常用操作与快捷键
+插入一个drawer C-c C-x d 插入一个带有时间的drawer C-c C-z block 简介 block通常用于存放代码块和一些示例,以&rdquo;#&#43;BEGIN&quot;开头,中间写入内容,以&rdquo;#&#43;END&quot;结尾. 示例 引用块
+引用内容
+示例块 示例" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/orgmode/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-18T22:28:00+08:00" />
+<meta property="article:modified_time" content="2022-11-18T22:28:59+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="orgmode"/>
+<meta name="twitter:description" content="文档结构 列表 无序列表 使用&quot;*&ldquo;号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了. 示例: 列表1 列表2 列表3 使用&rdquo;&#43;&ldquo;号或&rdquo;-&ldquo;号的列表与*号用法基本一致,唯一不同的是可以位于行首 有序列表有序列表使用&quot;1.&ldquo;或者&quot;1)&ldquo;开头示例: 第一 fsdaf fdsja 第二 第三 结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表. 常用操作与快捷键 &lt;tab&gt; 对列表进行收缩或展开 M-RET 在该列表下方新建一个与该列表同级的列表. 注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表. M-S-RET 在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似. S-UP和S-DOWN M-UP和M-DOWN 移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动. M-LEFT和M-RIGHT 提升或者降低列表的级别.不会连同子列表一起移动. M-S-LEFT和M-S-RIGHT 提升或者降低列表的级别.会连同子列表一起移动 C-c C-c 与复选框相关的操作 C-c - 修改与当前列表同级的表示方式,使它们的表示方式在&rdquo;-,&#43;,*,1.,1)&ldquo;中循环切换.如果有选中区域的话则只对该区域内的列表有效. C-c * 将当前列表修改为标题,使其下与其同级别的列表成为它的子项 C-c C-* 将当前列表级别一致的列表修改为缩进一致的标题. S-LEFT和S-RIGHT 修改列表与当前列表同级别的表示方式,在&rdquo;-,&#43;,*,1.,1)&ldquo;切换. 注意:使用此操作是需要将光标移动到表示列表的符号上. C-c ^ 对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序. drawer 简介 drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.
+示例
+drawer的内容
+常用操作与快捷键
+插入一个drawer C-c C-x d 插入一个带有时间的drawer C-c C-z block 简介 block通常用于存放代码块和一些示例,以&rdquo;#&#43;BEGIN&quot;开头,中间写入内容,以&rdquo;#&#43;END&quot;结尾. 示例 引用块
+引用内容
+示例块 示例"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "orgmode",
+      "item": "/posts/orgmode/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "orgmode",
+  "name": "orgmode",
+  "description": "文档结构 列表 无序列表 使用\u0026quot;*\u0026ldquo;号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了. 示例: 列表1 列表2 列表3 使用\u0026rdquo;+\u0026ldquo;号或\u0026rdquo;-\u0026ldquo;号的列表与*号用法基本一致,唯一不同的是可以位于行首 有序列表有序列表使用\u0026quot;1.\u0026ldquo;或者\u0026quot;1)\u0026ldquo;开头示例: 第一 fsdaf fdsja 第二 第三 结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表. 常用操作与快捷键 \u0026lt;tab\u0026gt; 对列表进行收缩或展开 M-RET 在该列表下方新建一个与该列表同级的列表. 注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表. M-S-RET 在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似. S-UP和S-DOWN M-UP和M-DOWN 移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动. M-LEFT和M-RIGHT 提升或者降低列表的级别.不会连同子列表一起移动. M-S-LEFT和M-S-RIGHT 提升或者降低列表的级别.会连同子列表一起移动 C-c C-c 与复选框相关的操作 C-c - 修改与当前列表同级的表示方式,使它们的表示方式在\u0026rdquo;-,+,*,1.,1)\u0026ldquo;中循环切换.如果有选中区域的话则只对该区域内的列表有效. C-c * 将当前列表修改为标题,使其下与其同级别的列表成为它的子项 C-c C-* 将当前列表级别一致的列表修改为缩进一致的标题. S-LEFT和S-RIGHT 修改列表与当前列表同级别的表示方式,在\u0026rdquo;-,+,*,1.,1)\u0026ldquo;切换. 注意:使用此操作是需要将光标移动到表示列表的符号上. C-c ^ 对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序. drawer 简介 drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.\n示例\ndrawer的内容\n常用操作与快捷键\n插入一个drawer C-c C-x d 插入一个带有时间的drawer C-c C-z block 简介 block通常用于存放代码块和一些示例,以\u0026rdquo;#+BEGIN\u0026quot;开头,中间写入内容,以\u0026rdquo;#+END\u0026quot;结尾. 示例 引用块\n引用内容\n示例块 示例",
+  "keywords": [
+    
+  ],
+  "articleBody": "文档结构 列表 无序列表 使用\"*“号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了. 示例: 列表1 列表2 列表3 使用”+“号或”-“号的列表与*号用法基本一致,唯一不同的是可以位于行首 有序列表有序列表使用\"1.“或者\"1)“开头示例: 第一 fsdaf fdsja 第二 第三 结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表. 常用操作与快捷键 对列表进行收缩或展开 M-RET 在该列表下方新建一个与该列表同级的列表. 注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表. M-S-RET 在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似. S-UP和S-DOWN M-UP和M-DOWN 移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动. M-LEFT和M-RIGHT 提升或者降低列表的级别.不会连同子列表一起移动. M-S-LEFT和M-S-RIGHT 提升或者降低列表的级别.会连同子列表一起移动 C-c C-c 与复选框相关的操作 C-c - 修改与当前列表同级的表示方式,使它们的表示方式在”-,+,*,1.,1)“中循环切换.如果有选中区域的话则只对该区域内的列表有效. C-c * 将当前列表修改为标题,使其下与其同级别的列表成为它的子项 C-c C-* 将当前列表级别一致的列表修改为缩进一致的标题. S-LEFT和S-RIGHT 修改列表与当前列表同级别的表示方式,在”-,+,*,1.,1)“切换. 注意:使用此操作是需要将光标移动到表示列表的符号上. C-c ^ 对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序. drawer 简介 drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.\n示例\ndrawer的内容\n常用操作与快捷键\n插入一个drawer C-c C-x d 插入一个带有时间的drawer C-c C-z block 简介 block通常用于存放代码块和一些示例,以”#+BEGIN\"开头,中间写入内容,以”#+END\"结尾. 示例 引用块\n引用内容\n示例块 示例\n代码块 int main() { int a=; float d=0; return 0; }\n表格 创建表格 表格表示如果某行是以’|‘开头并且非空的花一般会被视为是一个表格,而以’|-‘开头则会被视为是一个表格的水平线. 示例: 1 2 3 1 2 3 快捷键 输入”|“时如果是首字母,按tab会自动生成表格 输入”|-“时如果是首字母,按tab会自动生成表格的水平线 当光标在表格中输入tab会将往右移至下一个表格,如果表格已经是最后一个则会移动下一行第一个,如果下一行没有内容则会先在下一行新建一列. S- 与相反,不过只包含移动操作. M-a 将光标定位的当前格子的最前面,如果光标所在格子没有内容者与功能相同 M-a 将光标定位的当前格子的最后,如果光标所在格子没有内容者与S-功能相同 RET 上下移动表格,如果表格已经是最后一行则会在下一行新建一行比表格后载移动下一行第一个 C-c | (org-table-create-or-convert-from-region) 该命令输入后会提示用户输入表格的列x行,输入后会在该区域创建一个这样的表格.如果当前选中的区域是以逗号或者空格分开的,则该命令会按此自动生成表格. C-c C-c 是当前表格对齐 org-table-blank-field 清空当前光标所处位置的格子中的内容 M-LEFT (org-table-move-column-left)和M-RIGHT (org-table-move-column-right) 将当前列向指定方向移动 M-S-LEFT (org-table-delete-column) 将当前列删除 M-S-RIGHT (org-table-insert-column) 在当前列的前面新建一列 M-UP (org-table-move-row-up)和M-DOWN (org-table-move-row-down) 将当前行向指定方向移动. M-S-UP (org-table-kill-row) 将当前行删除 M-S-DOWN (org-table-insert-row) 在当前行上面新建一行. 对单个格子移动 S-UP (org-table-move-cell-up) 将当前格子向上移动 S-DOWN (org-table-move-cell-down) 将当前格子向下移动 S-LEFT (org-table-move-cell-left) 将当前格子向左移动 S-RIGHT (org-table-move-cell-right) 将当前格子向右移动 C-c - (org-table-insert-hline) 在当前行下面插入表格的水平线 C-c RET (org-table-hline-and-move) 与C-c -功能一致,不过会移动至新建的水平线下一行表格 C-c ^ (org-table-sort-lines) 对表格进行排序,排序的选择对象为光标所在的列. C-c ` (org-table-edit-field) 新开一个buffer对当前格子的内容进行编辑 M-x org-table-transpose-table-at-point 将光标所在的表格进行行列互换 C-c TAB (org-table-toggle-column-width) 收缩或者扩张 超链接 创建超链接 示例:\n[[链接][描述]] 或 [[链接]] 链接类型 内部链接 使用id 跳转到指定id位置 [#custom_id] 使用章节跳转到指定章节 [*section] 或 [section] 定义标记跳转到自定义的标记,使用’‘自定义一个标记 \u003c\u003e [target] 外部链接可以打开网址,文件等内容,一般都有自己的格式开头,比如网址以http或https开头,文件以file开头 [[https://www.baidu.com]] [[file:/home/cl/]] todo-item todo的使用 todo跟标题的使用方式几乎一样,在标题前加上TODO(大写)即可是标题成为一个TODO列表\n*** TODO 开会 常用的快捷键和命令 快捷键 命令 作用 C-c C-t org-todo 切换todo的状态 S-right和S-left 循环切换todo状态 C-c / t org-show-todo-tree 将文档中所以的todo项以稀疏树的形式展现出来 C-c a t org-adenda t 显示全局 TODO 列表。从所有的议程文件中收集 TODO 项到一个缓冲区中 S-M-RET org-insert-todo-heading 插入一个todo列表 完成进度 可以在标题或者todo列表后加上’[/]‘或者’[%]‘来其子项todo的完成进度或者复选框的选择比例,按’C-c C-c’可以刷新其状态\n示例 [2/4] [50%] DONE 111 TODO 222 TODO 333 DONE 444 复选框 复选框是特殊的列表,在列表的名称前加上’[ ]‘即是一个复选框例如:\nTODO today arrange [0/3] [0%] [-] call someone [1/3] peter lasy jonh [-] order food [2/3] milk bread dumpling [-] listen music [33%] jay chou justin biber mike jackson 操作与快捷键 C-c C-c和C-c C-x C-b(org-toggle-checkbox) 触发复选框的状态 C-c C-x C-r (org-toggle-radio-button) 是得同级的复选框只能选中一个或不选,执行此命令会是同级复选框都处于非选中状态,如果当前复选框是选中的则取消选中,否则选中. M-S-RET (org-insert-todo-heading) 插入一个新的复选框 标签 标签是对标题的说明,可以在标题后使用并且一个标题可以含有多个标签,标签的前后都必须有一个冒号\n标签的继承 标签具有继承性,一个标题如果具有一个或多个标签,那么其下的子项也会继承这些标签.\n* Meeting with the French group :work: ** Summary by Frank :boss:notes: *** TODO Prepare slides for him :action: 在以上示例中,最后一个todo标题虽然只有一个标签,但其实它会继承其父标签,所以该标题含有work,boss,notes,action四个标签也可以设置一个标签让所有的标签继承,比如\n#+FILETAGS: :Peter:Boss:Secret: 这样设置就好像在第0级的标题设置标签一样,所有标题都会继承该标题的标签\n标签操作和快捷键 C-c C-q (org-set-tags-command) 插入一个标签 C-c C-c 与上面功能相同 属性 ",
+  "wordCount" : "321",
+  "inLanguage": "en",
+  "datePublished": "2022-11-18T22:28:00+08:00",
+  "dateModified": "2022-11-18T22:28:59+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "geezer"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/orgmode/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      orgmode
+    </h1>
+    <div class="post-meta"><span title='2022-11-18 22:28:00 +0800 CST'>November 18, 2022</span>&nbsp;·&nbsp;geezer
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="文档结构">文档结构<a hidden class="anchor" aria-hidden="true" href="#文档结构">#</a></h2>
+<h3 id="列表">列表<a hidden class="anchor" aria-hidden="true" href="#列表">#</a></h3>
+<ul>
+<li>无序列表
+<ul>
+<li>使用&quot;*&ldquo;号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了.
+示例:
+<ul>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
+</ul>
+</li>
+<li>使用&rdquo;+&ldquo;号或&rdquo;-&ldquo;号的列表与*号用法基本一致,唯一不同的是可以位于行首</li>
+</ul>
+</li>
+<li>有序列表有序列表使用&quot;1.&ldquo;或者&quot;1)&ldquo;开头示例:
+<ol>
+<li>第一
+<ol>
+<li>fsdaf</li>
+<li>fdsja</li>
+</ol>
+</li>
+<li>第二</li>
+<li>第三</li>
+</ol>
+</li>
+<li>结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表.</li>
+<li>常用操作与快捷键
+<ul>
+<li>&lt;tab&gt;
+对列表进行收缩或展开</li>
+<li>M-RET
+在该列表下方新建一个与该列表同级的列表.
+注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表.</li>
+<li>M-S-RET
+在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似.</li>
+<li>S-UP和S-DOWN</li>
+<li>M-UP和M-DOWN
+移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动.</li>
+<li>M-LEFT和M-RIGHT
+提升或者降低列表的级别.不会连同子列表一起移动.</li>
+<li>M-S-LEFT和M-S-RIGHT
+提升或者降低列表的级别.会连同子列表一起移动</li>
+<li>C-c C-c
+与复选框相关的操作</li>
+<li>C-c -
+修改与当前列表同级的表示方式,使它们的表示方式在&rdquo;-,+,*,1.,1)&ldquo;中循环切换.如果有选中区域的话则只对该区域内的列表有效.</li>
+<li>C-c *
+将当前列表修改为标题,使其下与其同级别的列表成为它的子项</li>
+<li>C-c C-*
+将当前列表级别一致的列表修改为缩进一致的标题.</li>
+<li>S-LEFT和S-RIGHT
+修改列表与当前列表同级别的表示方式,在&rdquo;-,+,*,1.,1)&ldquo;切换.
+注意:使用此操作是需要将光标移动到表示列表的符号上.</li>
+<li>C-c ^
+对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序.</li>
+</ul>
+</li>
+</ul>
+<h3 id="drawer">drawer<a hidden class="anchor" aria-hidden="true" href="#drawer">#</a></h3>
+<ul>
+<li>
+<p>简介
+drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.</p>
+</li>
+<li>
+<p>示例</p>
+<p>drawer的内容</p>
+</li>
+<li>
+<p>常用操作与快捷键</p>
+<ul>
+<li>插入一个drawer
+C-c C-x d</li>
+<li>插入一个带有时间的drawer
+C-c C-z</li>
+</ul>
+</li>
+</ul>
+<h3 id="block">block<a hidden class="anchor" aria-hidden="true" href="#block">#</a></h3>
+<ul>
+<li>简介
+block通常用于存放代码块和一些示例,以&rdquo;#+BEGIN&quot;开头,中间写入内容,以&rdquo;#+END&quot;结尾.</li>
+<li>示例
+<ul>
+<li>
+<p>引用块</p>
+<blockquote>
+<p>引用内容</p>
+</blockquote>
+</li>
+<li>
+<p>示例块
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>示例</span></span></code></pre></div></p>
+</li>
+<li>
+<p>代码块
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> d<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="表格">表格<a hidden class="anchor" aria-hidden="true" href="#表格">#</a></h2>
+<h3 id="创建表格">创建表格<a hidden class="anchor" aria-hidden="true" href="#创建表格">#</a></h3>
+<ul>
+<li>表格表示如果某行是以&rsquo;|&lsquo;开头并且非空的花一般会被视为是一个表格,而以&rsquo;|-&lsquo;开头则会被视为是一个表格的水平线.</li>
+<li>示例:
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>快捷键
+<ul>
+<li>&lt;tab&gt;
+<ol>
+<li>输入&rdquo;|&ldquo;时如果是首字母,按tab会自动生成表格</li>
+<li>输入&rdquo;|-&ldquo;时如果是首字母,按tab会自动生成表格的水平线</li>
+<li>当光标在表格中输入tab会将往右移至下一个表格,如果表格已经是最后一个则会移动下一行第一个,如果下一行没有内容则会先在下一行新建一列.</li>
+</ol>
+</li>
+<li>S-&lt;tab&gt;
+与&lt;tab&gt;相反,不过只包含移动操作.</li>
+<li>M-a
+将光标定位的当前格子的最前面,如果光标所在格子没有内容者与&lt;tab&gt;功能相同</li>
+<li>M-a
+将光标定位的当前格子的最后,如果光标所在格子没有内容者与S-&lt;tab&gt;功能相同</li>
+<li>RET
+上下移动表格,如果表格已经是最后一行则会在下一行新建一行比表格后载移动下一行第一个</li>
+<li>C-c | (org-table-create-or-convert-from-region)
+该命令输入后会提示用户输入表格的列x行,输入后会在该区域创建一个这样的表格.如果当前选中的区域是以逗号或者空格分开的,则该命令会按此自动生成表格.</li>
+<li>C-c C-c
+是当前表格对齐</li>
+<li>org-table-blank-field
+清空当前光标所处位置的格子中的内容</li>
+<li>M-LEFT (org-table-move-column-left)和M-RIGHT (org-table-move-column-right)
+将当前列向指定方向移动</li>
+<li>M-S-LEFT (org-table-delete-column)
+将当前列删除</li>
+<li>M-S-RIGHT (org-table-insert-column)
+在当前列的前面新建一列</li>
+<li>M-UP (org-table-move-row-up)和M-DOWN (org-table-move-row-down)
+将当前行向指定方向移动.</li>
+<li>M-S-UP (org-table-kill-row)
+将当前行删除</li>
+<li>M-S-DOWN (org-table-insert-row)
+在当前行上面新建一行.</li>
+<li>对单个格子移动
+<ul>
+<li>S-UP (org-table-move-cell-up)
+将当前格子向上移动</li>
+<li>S-DOWN (org-table-move-cell-down)
+将当前格子向下移动</li>
+<li>S-LEFT (org-table-move-cell-left)
+将当前格子向左移动</li>
+<li>S-RIGHT (org-table-move-cell-right)
+将当前格子向右移动</li>
+</ul>
+</li>
+<li>C-c - (org-table-insert-hline)
+在当前行下面插入表格的水平线</li>
+<li>C-c RET (org-table-hline-and-move)
+与C-c -功能一致,不过会移动至新建的水平线下一行表格</li>
+<li>C-c ^ (org-table-sort-lines)
+对表格进行排序,排序的选择对象为光标所在的列.</li>
+<li>C-c ` (org-table-edit-field)
+新开一个buffer对当前格子的内容进行编辑</li>
+<li>M-x org-table-transpose-table-at-point
+将光标所在的表格进行行列互换</li>
+<li>C-c TAB (org-table-toggle-column-width)
+收缩或者扩张</li>
+</ul>
+</li>
+</ul>
+<h2 id="超链接">超链接<a hidden class="anchor" aria-hidden="true" href="#超链接">#</a></h2>
+<h3 id="创建超链接">创建超链接<a hidden class="anchor" aria-hidden="true" href="#创建超链接">#</a></h3>
+<p>示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[[链接][描述]]
+</span></span><span style="display:flex;"><span>或
+</span></span><span style="display:flex;"><span>[[链接]]</span></span></code></pre></div>
+<h3 id="链接类型">链接类型<a hidden class="anchor" aria-hidden="true" href="#链接类型">#</a></h3>
+<ul>
+<li>内部链接
+<ul>
+<li>使用id
+跳转到指定id位置
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[#custom_id]</span></span></code></pre></div></li>
+<li>使用章节跳转到指定章节
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[*section]
+</span></span><span style="display:flex;"><span>或
+</span></span><span style="display:flex;"><span>[section]</span></span></code></pre></div></li>
+<li>定义标记跳转到自定义的标记,使用&rsquo;<!-- raw HTML omitted --><!-- raw HTML omitted -->&lsquo;自定义一个标记
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;&lt;target&gt;&gt;
+</span></span><span style="display:flex;"><span>[target]</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>外部链接可以打开网址,文件等内容,一般都有自己的格式开头,比如网址以http或https开头,文件以file开头
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[[https://www.baidu.com]]
+</span></span><span style="display:flex;"><span>[[file:/home/cl/]]</span></span></code></pre></div></li>
+</ul>
+<h2 id="todo-item">todo-item<a hidden class="anchor" aria-hidden="true" href="#todo-item">#</a></h2>
+<h3 id="todo的使用">todo的使用<a hidden class="anchor" aria-hidden="true" href="#todo的使用">#</a></h3>
+<p>todo跟标题的使用方式几乎一样,在标题前加上TODO(大写)即可是标题成为一个TODO列表</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>*** TODO 开会</span></span></code></pre></div>
+<h4 id="常用的快捷键和命令">常用的快捷键和命令<a hidden class="anchor" aria-hidden="true" href="#常用的快捷键和命令">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-c C-t</td>
+<td>org-todo</td>
+<td>切换todo的状态</td>
+</tr>
+<tr>
+<td>S-right和S-left</td>
+<td></td>
+<td>循环切换todo状态</td>
+</tr>
+<tr>
+<td>C-c / t</td>
+<td>org-show-todo-tree</td>
+<td>将文档中所以的todo项以稀疏树的形式展现出来</td>
+</tr>
+<tr>
+<td>C-c a t</td>
+<td>org-adenda t</td>
+<td>显示全局 TODO 列表。从所有的议程文件中收集 TODO 项到一个缓冲区中</td>
+</tr>
+<tr>
+<td>S-M-RET</td>
+<td>org-insert-todo-heading</td>
+<td>插入一个todo列表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="完成进度">完成进度<a hidden class="anchor" aria-hidden="true" href="#完成进度">#</a></h3>
+<p>可以在标题或者todo列表后加上&rsquo;<!-- raw HTML omitted -->[/]<!-- raw HTML omitted -->&lsquo;或者&rsquo;<!-- raw HTML omitted -->[%]<!-- raw HTML omitted -->&lsquo;来其子项todo的完成进度或者复选框的选择比例,按&rsquo;C-c C-c&rsquo;可以刷新其状态</p>
+<h4 id="示例">示例  <!-- raw HTML omitted -->[2/4]<!-- raw HTML omitted --> <!-- raw HTML omitted -->[50%]<!-- raw HTML omitted --><a hidden class="anchor" aria-hidden="true" href="#示例">#</a></h4>
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->DONE<!-- raw HTML omitted -->  111</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->TODO<!-- raw HTML omitted -->  222</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->TODO<!-- raw HTML omitted -->  333</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->DONE<!-- raw HTML omitted -->  444</li>
+</ul>
+<h3 id="复选框">复选框<a hidden class="anchor" aria-hidden="true" href="#复选框">#</a></h3>
+<p>复选框是特殊的列表,在列表的名称前加上&rsquo;[ ]&lsquo;即是一个复选框例如:</p>
+<h4 id="today-arrange"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> today arrange <!-- raw HTML omitted -->[0/3]<!-- raw HTML omitted --> <!-- raw HTML omitted -->[0%]<!-- raw HTML omitted --><a hidden class="anchor" aria-hidden="true" href="#today-arrange">#</a></h4>
+<ul>
+<li>[-] call someone <!-- raw HTML omitted -->[1/3]<!-- raw HTML omitted -->
+<ul>
+<li><input disabled="" type="checkbox"> peter</li>
+<li><input disabled="" type="checkbox"> lasy</li>
+<li><input checked="" disabled="" type="checkbox"> jonh</li>
+</ul>
+</li>
+<li>[-] order food <!-- raw HTML omitted -->[2/3]<!-- raw HTML omitted -->
+<ul>
+<li><input checked="" disabled="" type="checkbox"> milk</li>
+<li><input disabled="" type="checkbox"> bread</li>
+<li><input checked="" disabled="" type="checkbox"> dumpling</li>
+</ul>
+</li>
+<li>[-] listen music <!-- raw HTML omitted -->[33%]<!-- raw HTML omitted -->
+<ul>
+<li><input disabled="" type="checkbox"> jay chou</li>
+<li><input checked="" disabled="" type="checkbox"> justin biber</li>
+<li><input disabled="" type="checkbox"> mike jackson</li>
+</ul>
+</li>
+</ul>
+<h4 id="操作与快捷键">操作与快捷键<a hidden class="anchor" aria-hidden="true" href="#操作与快捷键">#</a></h4>
+<ul>
+<li>C-c C-c和C-c C-x C-b(org-toggle-checkbox)
+触发复选框的状态</li>
+<li>C-c C-x C-r (org-toggle-radio-button)
+是得同级的复选框只能选中一个或不选,执行此命令会是同级复选框都处于非选中状态,如果当前复选框是选中的则取消选中,否则选中.</li>
+<li>M-S-RET (org-insert-todo-heading)
+插入一个新的复选框</li>
+</ul>
+<h2 id="标签">标签<a hidden class="anchor" aria-hidden="true" href="#标签">#</a></h2>
+<p>标签是对标题的说明,可以在标题后使用并且一个标题可以含有多个标签,标签的前后都必须有一个冒号</p>
+<h3 id="标签的继承">标签的继承<a hidden class="anchor" aria-hidden="true" href="#标签的继承">#</a></h3>
+<p>标签具有继承性,一个标题如果具有一个或多个标签,那么其下的子项也会继承这些标签.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>* Meeting with the French group      :work:
+</span></span><span style="display:flex;"><span>** Summary by Frank                  :boss:notes:
+</span></span><span style="display:flex;"><span>*** TODO Prepare slides for him      :action:</span></span></code></pre></div>
+<p>在以上示例中,最后一个todo标题虽然只有一个标签,但其实它会继承其父标签,所以该标题含有work,boss,notes,action四个标签也可以设置一个标签让所有的标签继承,比如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#+FILETAGS: :Peter:Boss:Secret:</span></span></code></pre></div>
+<p>这样设置就好像在第0级的标题设置标签一样,所有标题都会继承该标题的标签</p>
+<h4 id="标签操作和快捷键">标签操作和快捷键<a hidden class="anchor" aria-hidden="true" href="#标签操作和快捷键">#</a></h4>
+<ul>
+<li>C-c C-q (org-set-tags-command)
+插入一个标签</li>
+<li>C-c C-c
+与上面功能相同</li>
+</ul>
+<h2 id="属性">属性<a hidden class="anchor" aria-hidden="true" href="#属性">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href=""></a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

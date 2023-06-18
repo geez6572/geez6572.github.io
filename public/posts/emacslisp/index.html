@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>emacslisp | </title>
+<meta name="keywords" content="">
+<meta name="description" content="emacs tutorial emacs init emacs keys 介绍一些emacs的快捷键,以及如何定义快捷键
+定义快捷键 定义全局快捷键将crtl-b绑定到whitespace-mode上 (global-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效 (local-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 取消某个快捷键 (global-set-key (kbd &#34;C-b&#34;) nil) 定义快捷键的语法 单个修饰键和单个特殊键 (global-set-key (kbd &#34;M-a&#34;) &#39;backward-char) ; Alt&#43;a (global-set-key (kbd &#34;C-a&#34;) &#39;backward-char) ; Ctrl&#43;a (global-set-key (kbd &#34;&lt;f3&gt;&#34;) &#39;backward-char) ; F3 key 定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定. (global-set-key (kbd &#34;&lt;f7&gt;&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;&lt;f7&gt; &lt;f8&gt;&#34;) &#39;calendar) (global-set-key (kbd &#34;C-e&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;C-e a&#34;) &#39;calendar) ; Ctrl&#43;e a (global-set-key (kbd &#34;C-e SPC&#34;) &#39;calendar) ; Ctrl&#43;e Space 在major-mode中添加快捷键 普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode, 其主要原理是在该major-mode上添加hook,使得在开启该major-mode 后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效 (when (fboundp &#39;go-mode) (defun my-go-config () &#34;为go-mode添加快捷键&#34; (local-set-key (kbd &#34;C-b&#34;) &#39;gocf) ;;其他配置) (add-hook &#39;go-mode-hook &#39;my-go-config)) 直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改 (progn ;; modify dired keys (require &#39;dired ) (define-key dired-mode-map (kbd &#34;o&#34;) &#39;other-window) (define-key dired-mode-map (kbd &#34;2&#34;) &#39;delete-window) (define-key dired-mode-map (kbd &#34;3&#34;) &#39;delete-other-windows) (define-key dired-mode-map (kbd &#34;4&#34;) &#39;split-window-below) (define-key dired-mode-map (kbd &#34;C-o&#34;) &#39;find-file)) 在minor-mode中添加快捷键 minor-mode的键位映射变量名,一般都是&rsquo;minor-mode名-mode-map&rsquo;,所以要为某个 minor-mode添加快捷键可以">
+<meta name="author" content="geezer">
+<link rel="canonical" href="/posts/emacslisp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="emacslisp" />
+<meta property="og:description" content="emacs tutorial emacs init emacs keys 介绍一些emacs的快捷键,以及如何定义快捷键
+定义快捷键 定义全局快捷键将crtl-b绑定到whitespace-mode上 (global-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效 (local-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 取消某个快捷键 (global-set-key (kbd &#34;C-b&#34;) nil) 定义快捷键的语法 单个修饰键和单个特殊键 (global-set-key (kbd &#34;M-a&#34;) &#39;backward-char) ; Alt&#43;a (global-set-key (kbd &#34;C-a&#34;) &#39;backward-char) ; Ctrl&#43;a (global-set-key (kbd &#34;&lt;f3&gt;&#34;) &#39;backward-char) ; F3 key 定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定. (global-set-key (kbd &#34;&lt;f7&gt;&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;&lt;f7&gt; &lt;f8&gt;&#34;) &#39;calendar) (global-set-key (kbd &#34;C-e&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;C-e a&#34;) &#39;calendar) ; Ctrl&#43;e a (global-set-key (kbd &#34;C-e SPC&#34;) &#39;calendar) ; Ctrl&#43;e Space 在major-mode中添加快捷键 普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode, 其主要原理是在该major-mode上添加hook,使得在开启该major-mode 后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效 (when (fboundp &#39;go-mode) (defun my-go-config () &#34;为go-mode添加快捷键&#34; (local-set-key (kbd &#34;C-b&#34;) &#39;gocf) ;;其他配置) (add-hook &#39;go-mode-hook &#39;my-go-config)) 直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改 (progn ;; modify dired keys (require &#39;dired ) (define-key dired-mode-map (kbd &#34;o&#34;) &#39;other-window) (define-key dired-mode-map (kbd &#34;2&#34;) &#39;delete-window) (define-key dired-mode-map (kbd &#34;3&#34;) &#39;delete-other-windows) (define-key dired-mode-map (kbd &#34;4&#34;) &#39;split-window-below) (define-key dired-mode-map (kbd &#34;C-o&#34;) &#39;find-file)) 在minor-mode中添加快捷键 minor-mode的键位映射变量名,一般都是&rsquo;minor-mode名-mode-map&rsquo;,所以要为某个 minor-mode添加快捷键可以" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/emacslisp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-18T22:28:00+08:00" />
+<meta property="article:modified_time" content="2022-11-18T22:28:27+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="emacslisp"/>
+<meta name="twitter:description" content="emacs tutorial emacs init emacs keys 介绍一些emacs的快捷键,以及如何定义快捷键
+定义快捷键 定义全局快捷键将crtl-b绑定到whitespace-mode上 (global-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效 (local-set-key (kbd &#34;C-b&#34;) &#39;whitespace-mode) 取消某个快捷键 (global-set-key (kbd &#34;C-b&#34;) nil) 定义快捷键的语法 单个修饰键和单个特殊键 (global-set-key (kbd &#34;M-a&#34;) &#39;backward-char) ; Alt&#43;a (global-set-key (kbd &#34;C-a&#34;) &#39;backward-char) ; Ctrl&#43;a (global-set-key (kbd &#34;&lt;f3&gt;&#34;) &#39;backward-char) ; F3 key 定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定. (global-set-key (kbd &#34;&lt;f7&gt;&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;&lt;f7&gt; &lt;f8&gt;&#34;) &#39;calendar) (global-set-key (kbd &#34;C-e&#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd &#34;C-e a&#34;) &#39;calendar) ; Ctrl&#43;e a (global-set-key (kbd &#34;C-e SPC&#34;) &#39;calendar) ; Ctrl&#43;e Space 在major-mode中添加快捷键 普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode, 其主要原理是在该major-mode上添加hook,使得在开启该major-mode 后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效 (when (fboundp &#39;go-mode) (defun my-go-config () &#34;为go-mode添加快捷键&#34; (local-set-key (kbd &#34;C-b&#34;) &#39;gocf) ;;其他配置) (add-hook &#39;go-mode-hook &#39;my-go-config)) 直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改 (progn ;; modify dired keys (require &#39;dired ) (define-key dired-mode-map (kbd &#34;o&#34;) &#39;other-window) (define-key dired-mode-map (kbd &#34;2&#34;) &#39;delete-window) (define-key dired-mode-map (kbd &#34;3&#34;) &#39;delete-other-windows) (define-key dired-mode-map (kbd &#34;4&#34;) &#39;split-window-below) (define-key dired-mode-map (kbd &#34;C-o&#34;) &#39;find-file)) 在minor-mode中添加快捷键 minor-mode的键位映射变量名,一般都是&rsquo;minor-mode名-mode-map&rsquo;,所以要为某个 minor-mode添加快捷键可以"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "emacslisp",
+      "item": "/posts/emacslisp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "emacslisp",
+  "name": "emacslisp",
+  "description": "emacs tutorial emacs init emacs keys 介绍一些emacs的快捷键,以及如何定义快捷键\n定义快捷键 定义全局快捷键将crtl-b绑定到whitespace-mode上 (global-set-key (kbd \u0026#34;C-b\u0026#34;) \u0026#39;whitespace-mode) 定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效 (local-set-key (kbd \u0026#34;C-b\u0026#34;) \u0026#39;whitespace-mode) 取消某个快捷键 (global-set-key (kbd \u0026#34;C-b\u0026#34;) nil) 定义快捷键的语法 单个修饰键和单个特殊键 (global-set-key (kbd \u0026#34;M-a\u0026#34;) \u0026#39;backward-char) ; Alt+a (global-set-key (kbd \u0026#34;C-a\u0026#34;) \u0026#39;backward-char) ; Ctrl+a (global-set-key (kbd \u0026#34;\u0026lt;f3\u0026gt;\u0026#34;) \u0026#39;backward-char) ; F3 key 定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定. (global-set-key (kbd \u0026#34;\u0026lt;f7\u0026gt;\u0026#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd \u0026#34;\u0026lt;f7\u0026gt; \u0026lt;f8\u0026gt;\u0026#34;) \u0026#39;calendar) (global-set-key (kbd \u0026#34;C-e\u0026#34;) nil) ; good idea to put nil to the starting key (global-set-key (kbd \u0026#34;C-e a\u0026#34;) \u0026#39;calendar) ; Ctrl+e a (global-set-key (kbd \u0026#34;C-e SPC\u0026#34;) \u0026#39;calendar) ; Ctrl+e Space 在major-mode中添加快捷键 普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode, 其主要原理是在该major-mode上添加hook,使得在开启该major-mode 后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效 (when (fboundp \u0026#39;go-mode) (defun my-go-config () \u0026#34;为go-mode添加快捷键\u0026#34; (local-set-key (kbd \u0026#34;C-b\u0026#34;) \u0026#39;gocf) ;;其他配置) (add-hook \u0026#39;go-mode-hook \u0026#39;my-go-config)) 直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改 (progn ;; modify dired keys (require \u0026#39;dired ) (define-key dired-mode-map (kbd \u0026#34;o\u0026#34;) \u0026#39;other-window) (define-key dired-mode-map (kbd \u0026#34;2\u0026#34;) \u0026#39;delete-window) (define-key dired-mode-map (kbd \u0026#34;3\u0026#34;) \u0026#39;delete-other-windows) (define-key dired-mode-map (kbd \u0026#34;4\u0026#34;) \u0026#39;split-window-below) (define-key dired-mode-map (kbd \u0026#34;C-o\u0026#34;) \u0026#39;find-file)) 在minor-mode中添加快捷键 minor-mode的键位映射变量名,一般都是\u0026rsquo;minor-mode名-mode-map\u0026rsquo;,所以要为某个 minor-mode添加快捷键可以",
+  "keywords": [
+    
+  ],
+  "articleBody": "emacs tutorial emacs init emacs keys 介绍一些emacs的快捷键,以及如何定义快捷键\n定义快捷键 定义全局快捷键将crtl-b绑定到whitespace-mode上 (global-set-key (kbd \"C-b\") 'whitespace-mode) 定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效 (local-set-key (kbd \"C-b\") 'whitespace-mode) 取消某个快捷键 (global-set-key (kbd \"C-b\") nil) 定义快捷键的语法 单个修饰键和单个特殊键 (global-set-key (kbd \"M-a\") 'backward-char) ; Alt+a (global-set-key (kbd \"C-a\") 'backward-char) ; Ctrl+a (global-set-key (kbd \"\") 'backward-char) ; F3 key 定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定. (global-set-key (kbd \"\") nil) ; good idea to put nil to the starting key (global-set-key (kbd \" \") 'calendar) (global-set-key (kbd \"C-e\") nil) ; good idea to put nil to the starting key (global-set-key (kbd \"C-e a\") 'calendar) ; Ctrl+e a (global-set-key (kbd \"C-e SPC\") 'calendar) ; Ctrl+e Space 在major-mode中添加快捷键 普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode, 其主要原理是在该major-mode上添加hook,使得在开启该major-mode 后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效 (when (fboundp 'go-mode) (defun my-go-config () \"为go-mode添加快捷键\" (local-set-key (kbd \"C-b\") 'gocf) ;;其他配置) (add-hook 'go-mode-hook 'my-go-config)) 直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改 (progn ;; modify dired keys (require 'dired ) (define-key dired-mode-map (kbd \"o\") 'other-window) (define-key dired-mode-map (kbd \"2\") 'delete-window) (define-key dired-mode-map (kbd \"3\") 'delete-other-windows) (define-key dired-mode-map (kbd \"4\") 'split-window-below) (define-key dired-mode-map (kbd \"C-o\") 'find-file)) 在minor-mode中添加快捷键 minor-mode的键位映射变量名,一般都是’minor-mode名-mode-map’,所以要为某个 minor-mode添加快捷键可以\n(progn ;; change isearch's keys to arrows (define-key isearch-mode-map (kbd \"\") 'isearch-ring-retreat ) (define-key isearch-mode-map (kbd \"\") 'isearch-ring-advance ) (define-key isearch-mode-map (kbd \"\") 'isearch-repeat-backward) (define-key isearch-mode-map (kbd \"\") 'isearch-repeat-forward) ) minor-mode的快捷键优先级 minor-mode的快捷键优先级存放在 minor-mode-map-alist 它是一个关联列表,可通过修改该变量来修改minor-mode优先级\n定义快捷键前缀 ;;定义快捷键前缀命令 (define-prefix-command 'geezer-prefix) ;;将以上命令绑定到某个快捷键上 (global-set-keys (kbd \"C-z\") 'geezer-prefix) ;;经过以上两步就可以是的'C-z'成为一个前缀按键 ;;之后只需要在该前缀按键添加即可 (define-key my-keymap (kbd \"\") 'visual-line-mode) 同一个命令在不同major-mode的不同作用 要是同一个命令在不同major-mode中的作用不同,最简单的方法就是封装该命令, 再在命令中判断当前major-mode 假设我们在x1-mode时执行该命令会调用x1-cmd 在x2-mode时,为x2-cmd\n;;定义x1-cmd函数和x2-cmd函数 (defun x1-cmd () ()) (defun x2-cmd () ()) (defun geezer-smart-cmd () (interactive) (cond ((string-equal major-mode \"x1-mode\") (x1-cmd)) ((string-equal major-mode \"x2-mode\") (x2-cmd)) (t nil) )) 定义可临时重复使用的快捷键 在emacs有这样的操作,调用某个命令后就可以重复按住指定键来重复执行该命令,而且这个操作是可以中断的,中断后之前的按键就会失效.这就好比在浏览器中我们可以按住ctrl键,然后滚动鼠标就能实现放大缩小,而松开ctrl键后就没有这种效果了. 在emacs也有这样的操作,比如 text-scale-adjust 调用该命令后,允许按 + 键放大,按 - 键缩小等操作,而结束该命令后就会失去该效果下面我们来实现下这个操作\n(defun geezer-forward-word () \"移动光标\" (interactive) (progn (forward-char) (set-transient-map (let (($kmap (make-sparse-keymap))) (define-key $kmap (kbd \"r\") 'geezer-forward-word) (define-key $kmap (kbd \"l\") 'geezer-backward-word) $kmap ) ) ) ) (defun geezer-backward-word () \"移动光标\" (interactive) (progn (forward-char) (set-transient-map (let (($kmap (make-sparse-keymap))) (define-key $kmap (kbd \"r\") 'geezer-forward-word) (define-key $kmap (kbd \"l\") 'geezer-backward-word) $kmap ) ) ) ) 以上代码中 set-transient-map 接受一个keymap,并且使用该keymap一次,并且该keymap的优先级会高于其他的minor-mode 而let中的代码,则返回一个 keymap,使用该keymap后按r或者l都会执行一个递归函数以此实现重复调用,这样在调用该函数后,可以重复使用r和l实现对应的操作.按C-g可结束也可以自定义一个键位结束,结束后r和l的功能会还原,\n在emacs中输入表情,及其他unicode符号 key-translation-map 是emacs自带的一个keymap,在任何buffer都有效所以我们可以向里面添加map实现输入表情的效果\n(define-key key-translation-map (kbd \"\") (kbd \"•\")) ;; set keys to insert math symbol (define-key key-translation-map (kbd \" p\") (kbd \"φ\")) (define-key key-translation-map (kbd \" x\") (kbd \"ξ\")) (define-key key-translation-map (kbd \" i\") (kbd \"∞\")) (define-key key-translation-map (kbd \" \") (kbd \"→\")) ;; set keys to insert emoji (define-key key-translation-map (kbd \" 1\") (kbd \"😅\")) (define-key key-translation-map (kbd \" 2\") (kbd \"❤\")) 这里不推荐使用 global-set-key 的方式,就像下面这种\n(global-set-key (kbd \"\") (lambda () (interactive) (insert \"→\"))) 这种方法的确可行,但在使用isearch时会失效\n交换键盘按键 交换f11和f12\n(define-key key-translation-map (kbd \"\") (kbd \"\")) (define-key key-translation-map (kbd \"\") (kbd \"\")) 鼠标操作 取消鼠标的加速 (setq mouse-wheel-progressive-speed nil) 控制鼠标每次移动的行数是鼠标每次能够移动两行 (setq mouse-wheel-scroll-amount '(2)) 取消鼠标高亮 (setq mouse-highlight nil) 鼠标的语法 鼠标按键 elisp表示 鼠标左键 (kbd “”) 鼠标滚轮键 (kbd “”) 鼠标右键 (kbd “”) 鼠标滚轮向前(linux) (kbd “”) 鼠标滚轮向后(linux) (kbd “”) 鼠标滚轮向前(mac,win) (kbd “”) 鼠标滚轮向后(mac,win) (kbd “”) lisp basics 基础 输出函数print 格式:(print OBJECT \u0026optional PRINTCHARFUN) print接受一个输出对象和一个输出的目标buffer object即为输出对象,printcharfun即输出的目标buffer (progn (setq gbuffer (generate-new-buffer \"*my output*\")) (print \"fasdfs\" gbuffer) (switch-to-buffer gbuffer)) unicode字符表示 \\uxxxx :接受四个16进制数 \\u00xxxxxx :接受六个16进制数 处理字符串的函数 函数 示例 作用 结果 length (length “abc”) 获得\"abc\"长度 3 substring (substring “abc123” 0 3) 截取字符串0-3之间的子字符串 abc concat (concat “some” “thing”) 字符串拼接 something split-string (split-string “xy_007_cat” “_”) 以’_‘截取字符串 (“xy”,“007”,“cat”) string-to-number 字符串转数字 number-to-string 数字转字符 相等判断 equal:判断数据类型和值是否相同 eq:判断是否为同一对象 eql:与eq很像但两个相同的浮点数会返回t 数据类型 mapcar (mapcar FUNCTION SEQUENCE) 会返回处理后的结果 mapc 与mapcar一样但不会返回结果,而返回nil practical emacs lisp 概述 光标位置 函数 作用 point 返回当前光标位置,其值为前面字符个数,包括空格和回车 region-beginning 返回选中区域的开头字符位置 region-end 返回选中区域的结尾字符位置 line-beginning-position 返回行首字符位置 line-end-position 返回行为字符位置 point-min 返回整个文件开头位置 point-max 返回整个文件结尾位置 光标移动和文本搜索 ;;跳转到39字符的位置 (goto-char 39) ;;使光标前移和后移四个字符 (forward-char 4) (backward-char 4) ;;向前搜\"some\"和向后搜索\"some\" (search-forward \"some\") ; to end of “some” (search-backward \"some\") ; to beginning of “some” ;;向前搜索数字和向后搜索数字 (re-search-forward \"[0-9]\") ; digit (re-search-backward \"[0-9]\") ;;将光标前移和将光标后移,知道找到非小写字母 (skip-chars-forward \"a-z\") (skip-chars-backward \"a-z\") 修改文本 ;;从光标开始删除9个字符 (delete-char 9) ;;删除3-10位置的字符 (delete-region 3 10) ;;在当前光标处插入字符串 (insert \"i ♥ cats\") ;;获取当前buffer71-300的字符串,并赋值给x (setq x (buffer-substring 71 300)) ;;将7-300处的字母转为大写 (capitalize-region 71 300) buffer操作 ;;获取buffer名称 (buffer-name) ;;返回当前buffer文件的绝对路径 (buffer-file-name) ;; switch to the buffer named xyz (switch-to-buffer \"xyz\") ;;保存当前buffer (save-buffer) ;; 关闭名为\"xyz\"的buffer (kill-buffer \"xyz\") ;;临时将\"xyz\"buffer作为当前buffer,函数结束后将返回之前操作的buffer (with-current-buffer \"practical-elisp.el\" ;;这里可以写一些插入删除等操作 ) 文件操作 基本操作 ;; open a file (in a buffer) (find-file \"~/\") ;; same as “Save As”. (write-file path) ;; insert file into current position (insert-file-contents path) ;; append a text block to file (append-to-file start-pos end-pos path) ;; renaming file (rename-file file-name new-name) ;; copying file (copy-file old-name new-name) ;; deleting file (delete-file file-name) ;; get dir path (file-name-directory full-path) ;; get filename part (file-name-nondirectory full-path) ;; get filename's suffix (file-name-extension file-name) ;; get filename sans suffix (file-name-sans-extension file-name) narrow操作 narrow操作可以使文件只有指定的部分可见,而其余部分不可见,除此以外它的效果与删除效果几乎相同,它会对光标行数等产生影响.可以调用\"widen\"把刚才隐藏的部分显示出来 函数 作用 narrow-to-defun 仅显示当前光标所在的函数 narrow-to-page 仅显示当前页面中可见的内容 narrow-to-region 仅显示指定位置的内容 widen 显示隐藏部分的内容 buffer-narrow-p 判断当前buffer是否有隐藏内容 save-excursion 保存当前光标位置,执行完body里的内容后返回 save-restriction 保存当前缓冲区,执行完body里的内容后返回通常与narrow一起使用 案例 替换选中区域的文本 (defun geezer-replace-greek-region () (interactive) (let ((start (region-beginning)) (end (region-end))) (save-restriction (narrow-to-region start end) (goto-char (point-min)) (while (search-forward \"a\" nil t) (replace-match \"A\" nil t)) (goto-char (point-min)) (while (search-forward \"b\" nil t) (replace-match \"B\" nil t))))) 删除括号中的内容 (defun geezer-delete-pair () (interactive) (save-excursion (let (p1 p2) (skip-chars-backward \"^([{\u003c\u003e\") (setq p1 (point)) (skip-chars-forward \"^)]}\u003c\u003e\") (setq p2 (point)) (delete-region p1 p2)))) defun中的interactive的作用 定义函数时interactive的作用有两个\n是函数可以以命令的形式调用,及通过M-x的方式 在interactive后加上参数可以是调用该函数时实现交互式传参 参数说明\n(ineractive) 可以用命令调用 (ineractive string) string第一个字符指定输入的内容,例如为s则表示为输入一个字符串,为n则表示数字等, 若要从交互界面获取多个参数可以用回车隔开 (defun ask-name-and-age (x y) \"Ask name and age\" (interactive \"sEnter name nEnter age:\") (message \"Name is: %s, Age is: %d\" x y)) (ineractive list) 这种方式是最常用的一种方式,list中可以是任何表达式,只要能够返回对应参数个数的list即可 (defun ask-name-and-age2 (x y) \"Ask name and age\" (interactive (list (read-string \"Enter name:\") (read-number \"Enter age:\"))) (message \"Name is: %s, Age is: %d\" x y)) thing-at-point\n函数调用:(thing-at-point THING \u0026optional NO-PROPERTIES) 当我们用interactive进行交互时,使用 thing-at-point 是非常方便的, 例如,我们在寻求帮助时,使用的describe-function,describe-variable(对应快捷键C-h f,C-h k)时, 就会获取当前光标处的函数或变量,使得我们在调用上面两个命令时,如果我们不做输入,它会默认选择光标处的函数或变量 thing-at-point不仅可以获取当前光标处的函数和变量,同时也可以获取光标处的 ‘symbol, ’list, ‘sexp, ‘defun, ‘filename, ‘url, ’email, ‘uuid, ‘word, ‘sentence, ‘whitespace, ’line, ’number, ‘page. 只需要将 thing-at-point 的第二个参数设为上面这些值即可\n(defun test () \"获取单词\" (interactive) (message \"%s\" (thing-at-point 'word))) bounds-of-thing-at-point\n获取thing-at-point的边界,返回的是一个cons,其第一个元素为边界的开始的位置,第二个元素为边界结束的位置\n(defun test () (interactive) (let (bounds pos1 pos2 mything) (setq bounds (bounds-of-thing-at-point 'symbol)) (setq pos1 (car bounds)) (setq pos2 (cdr bounds)) (setq mything (buffer-substring-no-properties pos1 pos2)) (message \"thing begin at [%s],end at [%s],thing is [%s]\" pos1 pos2 mything)) 查找替换 search-forward和search-backward. (search-forward STRING \u0026optional BOUND NOERROR COUNT) 将关闭移动到要查找的字符串开始位置, re-search-forward和re-search-backward (re-search-forward REGEXP \u0026optional BOUND NOERROR COUNT) 与上面函数功能一样,不过匹配的是正则表达式,而非字符串 search-forward-regexp和search-backward-regexp 分别是re-search-forward和re-search-backward的别名 case-fold-search变量其值默认为t,表示查找是忽略大小写为nil时,表示不忽略大小写 elisp脚本 运行elisp脚本 elisp可以运行在终端,比如\nemacs --script /path/to/elisp-file buffer相关函数 buffer-name (buffer-name \u0026optional BUFFER) 获取当前buffer名字 buffer-file-name (buffer-file-name \u0026optional BUFFER) 返回当前buffer处文件的绝对路径,如果不存在则返回nil with-current-buffer (with-current-buffer BUFFER-OR-NAME \u0026rest BODY) 将某个缓冲区作为临时的缓冲区,执行完body里的内容后返回 set-buffer (set-buffer BUFFER-OR-NAME) 跳转到指定buffer,但该buffer不可见,如果需要可见可使用switch-to-buffer generate-new-buffer (generate-new-buffer NAME) 新建一个buffer get-buffer-create (get-buffer-create BUFFER-OR-NAME) 新建一个buffer,但不将其作为当前buffer kill-buffer (kill-buffer \u0026optional BUFFER-OR-NAME) 关闭指定buffer 文件相关函数 directory-files 返回一个带有该目录下所有指定文件的list 不会递归查找,即如果该目录下有子目录不会对子目录进行查找 (directory-files DIRECTORY \u0026optional FULL MATCH NOSORT) 参数1:目录路径参数2:返回的文件是否为绝对路径参数3:文件匹配的方式参数4:是否排序 directory-files-recursively 递归查找指定文件,后返回一个带有所有指定文件的list 会递归查找,即如果该目录下有子目录会对子目录进行查找由于会递归查找所以会返回文件的相对路近,而非只含文件名 (directory-files-recursively DIR REGEXP \u0026optional INCLUDE-DIRECTORIES) elisp example emacs write major-mode font lock mode 它是emacs内置的一个minor-mode,它与当前buffer的语法高亮有关,其高亮规则通过两种方式实现\nSyntactic fontification 一些与注释字符串,符号相关的注释,它的注释内容存放在,Syntax Table中,可通过describe-syntax命令查看 Search based fontification 使用正则表达式查找相关内容进行高亮,通常高亮的是一些关键字,函数名,变量名之类的,它依赖于,font-lock-defaults变量 font-lock-defaults 该变量通常是一个list,为nil的话将不会进行任何高亮,而list里面通常有四个关键变量\nfont-lock-keywords 关键字的高亮规则 font-lock-keywords-only 字符串和注释等的高亮规则 font-lock-keywords-case-fold-search 正则表达式是否区分大小写 font-lock-syntax-table 与syntax有关 ",
+  "wordCount" : "1001",
+  "inLanguage": "en",
+  "datePublished": "2022-11-18T22:28:00+08:00",
+  "dateModified": "2022-11-18T22:28:27+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "geezer"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/emacslisp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      emacslisp
+    </h1>
+    <div class="post-meta"><span title='2022-11-18 22:28:00 +0800 CST'>November 18, 2022</span>&nbsp;·&nbsp;geezer
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="emacs-tutorial">emacs tutorial<a hidden class="anchor" aria-hidden="true" href="#emacs-tutorial">#</a></h2>
+<h2 id="emacs-init">emacs init<a hidden class="anchor" aria-hidden="true" href="#emacs-init">#</a></h2>
+<h2 id="emacs-keys">emacs keys<a hidden class="anchor" aria-hidden="true" href="#emacs-keys">#</a></h2>
+<p>介绍一些emacs的快捷键,以及如何定义快捷键</p>
+<h3 id="定义快捷键">定义快捷键<a hidden class="anchor" aria-hidden="true" href="#定义快捷键">#</a></h3>
+<ul>
+<li>定义全局快捷键将crtl-b绑定到whitespace-mode上
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-b&#34;</span>) <span style="color:#e6db74">&#39;whitespace-mode</span>)</span></span></code></pre></div></li>
+<li>定义局部快捷键局部快捷键只对当前buffer有效,一旦离开当前buffer则会失效
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(local-set-key (kbd <span style="color:#e6db74">&#34;C-b&#34;</span>) <span style="color:#e6db74">&#39;whitespace-mode</span>)</span></span></code></pre></div></li>
+<li>取消某个快捷键
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-b&#34;</span>) <span style="color:#66d9ef">nil</span>)</span></span></code></pre></div></li>
+</ul>
+<h3 id="定义快捷键的语法">定义快捷键的语法<a hidden class="anchor" aria-hidden="true" href="#定义快捷键的语法">#</a></h3>
+<ul>
+<li>单个修饰键和单个特殊键
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;M-a&#34;</span>) <span style="color:#e6db74">&#39;backward-char</span>) <span style="color:#75715e">; Alt+a</span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-a&#34;</span>) <span style="color:#e6db74">&#39;backward-char</span>) <span style="color:#75715e">; Ctrl+a</span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;f3&gt;&#34;</span>)  <span style="color:#e6db74">&#39;backward-char</span>) <span style="color:#75715e">; F3 key</span></span></span></code></pre></div></li>
+<li>定义带前缀的快捷键当定义某个带前缀的快捷键时需要先取消前缀快捷键的绑定.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;f7&gt;&#34;</span>) <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">; good idea to put nil to the starting key</span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;f7&gt; &lt;f8&gt;&#34;</span>) <span style="color:#e6db74">&#39;calendar</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-e&#34;</span>) <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">; good idea to put nil to the starting key</span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-e a&#34;</span>) <span style="color:#e6db74">&#39;calendar</span>) <span style="color:#75715e">; Ctrl+e a</span>
+</span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-e SPC&#34;</span>) <span style="color:#e6db74">&#39;calendar</span>) <span style="color:#75715e">; Ctrl+e Space</span></span></span></code></pre></div></li>
+</ul>
+<h3 id="在major-mode中添加快捷键">在major-mode中添加快捷键<a hidden class="anchor" aria-hidden="true" href="#在major-mode中添加快捷键">#</a></h3>
+<ul>
+<li>普通方法要在某个major-mode上添加快捷键使其只作用于该major-mode,
+其主要原理是在该major-mode上添加hook,使得在开启该major-mode
+后调用我们自定义的函数,而自定义的函数中我们可以定义一个局部快捷键这样就可以时的该快捷键只对该major-mode有效
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(when (<span style="color:#a6e22e">fboundp</span> <span style="color:#e6db74">&#39;go-mode</span>)
+</span></span><span style="display:flex;"><span>  (defun my-go-config ()
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;为go-mode添加快捷键&#34;</span>
+</span></span><span style="display:flex;"><span>    (local-set-key (kbd <span style="color:#e6db74">&#34;C-b&#34;</span>) <span style="color:#e6db74">&#39;gocf</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;;其他配置)</span>
+</span></span><span style="display:flex;"><span>  (add-hook <span style="color:#e6db74">&#39;go-mode-hook</span> <span style="color:#e6db74">&#39;my-go-config</span>))</span></span></code></pre></div></li>
+<li>直接修改mode的键位映射如果我们知道某个major-mode的键位映射变量名,则可以直接通过变量名修改
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(progn
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; modify dired keys</span>
+</span></span><span style="display:flex;"><span>  (require <span style="color:#e6db74">&#39;dired</span> )
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-key</span> dired-mode-map (kbd <span style="color:#e6db74">&#34;o&#34;</span>) <span style="color:#e6db74">&#39;other-window</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-key</span> dired-mode-map (kbd <span style="color:#e6db74">&#34;2&#34;</span>) <span style="color:#e6db74">&#39;delete-window</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-key</span> dired-mode-map (kbd <span style="color:#e6db74">&#34;3&#34;</span>) <span style="color:#e6db74">&#39;delete-other-windows</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-key</span> dired-mode-map (kbd <span style="color:#e6db74">&#34;4&#34;</span>) <span style="color:#e6db74">&#39;split-window-below</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-key</span> dired-mode-map (kbd <span style="color:#e6db74">&#34;C-o&#34;</span>) <span style="color:#e6db74">&#39;find-file</span>))</span></span></code></pre></div></li>
+</ul>
+<h3 id="在minor-mode中添加快捷键">在minor-mode中添加快捷键<a hidden class="anchor" aria-hidden="true" href="#在minor-mode中添加快捷键">#</a></h3>
+<p>minor-mode的键位映射变量名,一般都是&rsquo;minor-mode名-mode-map&rsquo;,所以要为某个
+minor-mode添加快捷键可以</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(progn
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; change isearch&#39;s keys to arrows</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> isearch-mode-map (kbd <span style="color:#e6db74">&#34;&lt;up&gt;&#34;</span>) <span style="color:#e6db74">&#39;isearch-ring-retreat</span> )
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> isearch-mode-map (kbd <span style="color:#e6db74">&#34;&lt;down&gt;&#34;</span>) <span style="color:#e6db74">&#39;isearch-ring-advance</span> )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> isearch-mode-map (kbd <span style="color:#e6db74">&#34;&lt;left&gt;&#34;</span>) <span style="color:#e6db74">&#39;isearch-repeat-backward</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> isearch-mode-map (kbd <span style="color:#e6db74">&#34;&lt;right&gt;&#34;</span>) <span style="color:#e6db74">&#39;isearch-repeat-forward</span>)
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+<h3 id="minor-mode的快捷键优先级">minor-mode的快捷键优先级<a hidden class="anchor" aria-hidden="true" href="#minor-mode的快捷键优先级">#</a></h3>
+<p>minor-mode的快捷键优先级存放在 <strong>minor-mode-map-alist</strong>
+它是一个关联列表,可通过修改该变量来修改minor-mode优先级</p>
+<h3 id="定义快捷键前缀">定义快捷键前缀<a hidden class="anchor" aria-hidden="true" href="#定义快捷键前缀">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;;定义快捷键前缀命令</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-prefix-command</span> <span style="color:#e6db74">&#39;geezer-prefix</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;将以上命令绑定到某个快捷键上</span>
+</span></span><span style="display:flex;"><span>(global-set-keys (kbd <span style="color:#e6db74">&#34;C-z&#34;</span>) <span style="color:#e6db74">&#39;geezer-prefix</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;经过以上两步就可以是的&#39;C-z&#39;成为一个前缀按键</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;之后只需要在该前缀按键添加即可</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> my-keymap (kbd <span style="color:#e6db74">&#34;&lt;f6&gt;&#34;</span>) <span style="color:#e6db74">&#39;visual-line-mode</span>)</span></span></code></pre></div>
+<h3 id="同一个命令在不同major-mode的不同作用">同一个命令在不同major-mode的不同作用<a hidden class="anchor" aria-hidden="true" href="#同一个命令在不同major-mode的不同作用">#</a></h3>
+<p>要是同一个命令在不同major-mode中的作用不同,最简单的方法就是封装该命令,
+再在命令中判断当前major-mode
+假设我们在x1-mode时执行该命令会调用x1-cmd
+在x2-mode时,为x2-cmd</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;;定义x1-cmd函数和x2-cmd函数</span>
+</span></span><span style="display:flex;"><span>(defun x1-cmd () ())
+</span></span><span style="display:flex;"><span>(defun x2-cmd () ())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun geezer-smart-cmd ()
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (cond
+</span></span><span style="display:flex;"><span>   ((<span style="color:#a6e22e">string-equal</span> major-mode <span style="color:#e6db74">&#34;x1-mode&#34;</span>) (x1-cmd))
+</span></span><span style="display:flex;"><span>   ((<span style="color:#a6e22e">string-equal</span> major-mode <span style="color:#e6db74">&#34;x2-mode&#34;</span>) (x2-cmd))
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">t</span> <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>  ))</span></span></code></pre></div>
+<h3 id="定义可临时重复使用的快捷键">定义可临时重复使用的快捷键<a hidden class="anchor" aria-hidden="true" href="#定义可临时重复使用的快捷键">#</a></h3>
+<p>在emacs有这样的操作,调用某个命令后就可以重复按住指定键来重复执行该命令,而且这个操作是可以中断的,中断后之前的按键就会失效.这就好比在浏览器中我们可以按住ctrl键,然后滚动鼠标就能实现放大缩小,而松开ctrl键后就没有这种效果了.
+在emacs也有这样的操作,比如 <strong>text-scale-adjust</strong> 调用该命令后,允许按 <strong>+</strong> 键放大,按 <strong>-</strong>
+键缩小等操作,而结束该命令后就会失去该效果下面我们来实现下这个操作</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(defun geezer-forward-word ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;移动光标&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (progn
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">forward-char</span>)
+</span></span><span style="display:flex;"><span>    (set-transient-map
+</span></span><span style="display:flex;"><span>     (let (($kmap (<span style="color:#a6e22e">make-sparse-keymap</span>)))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">define-key</span> $kmap (kbd <span style="color:#e6db74">&#34;r&#34;</span>) <span style="color:#e6db74">&#39;geezer-forward-word</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">define-key</span> $kmap (kbd <span style="color:#e6db74">&#34;l&#34;</span>) <span style="color:#e6db74">&#39;geezer-backward-word</span>)
+</span></span><span style="display:flex;"><span>       $kmap
+</span></span><span style="display:flex;"><span>       )
+</span></span><span style="display:flex;"><span>     )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>(defun geezer-backward-word ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;移动光标&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (progn
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">forward-char</span>)
+</span></span><span style="display:flex;"><span>    (set-transient-map
+</span></span><span style="display:flex;"><span>     (let (($kmap (<span style="color:#a6e22e">make-sparse-keymap</span>)))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">define-key</span> $kmap (kbd <span style="color:#e6db74">&#34;r&#34;</span>) <span style="color:#e6db74">&#39;geezer-forward-word</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">define-key</span> $kmap (kbd <span style="color:#e6db74">&#34;l&#34;</span>) <span style="color:#e6db74">&#39;geezer-backward-word</span>)
+</span></span><span style="display:flex;"><span>       $kmap
+</span></span><span style="display:flex;"><span>       )
+</span></span><span style="display:flex;"><span>     )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+<p>以上代码中 <strong>set-transient-map</strong> 接受一个keymap,并且使用该keymap一次,并且该keymap的优先级会高于其他的minor-mode
+而let中的代码,则返回一个 keymap,使用该keymap后按r或者l都会执行一个递归函数以此实现重复调用,这样在调用该函数后,可以重复使用r和l实现对应的操作.按C-g可结束也可以自定义一个键位结束,结束后r和l的功能会还原,</p>
+<h3 id="在emacs中输入表情-及其他unicode符号">在emacs中输入表情,及其他unicode符号<a hidden class="anchor" aria-hidden="true" href="#在emacs中输入表情-及其他unicode符号">#</a></h3>
+<p><strong>key-translation-map</strong> 是emacs自带的一个keymap,在任何buffer都有效所以我们可以向里面添加map实现输入表情的效果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f8&gt;&#34;</span>) (kbd <span style="color:#e6db74">&#34;•&#34;</span>))
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">;; set keys to insert math symbol</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; p&#34;</span>) (kbd <span style="color:#e6db74">&#34;φ&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; x&#34;</span>) (kbd <span style="color:#e6db74">&#34;ξ&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; i&#34;</span>) (kbd <span style="color:#e6db74">&#34;∞&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; &lt;right&gt;&#34;</span>) (kbd <span style="color:#e6db74">&#34;→&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; set keys to insert emoji</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; 1&#34;</span>) (kbd <span style="color:#e6db74">&#34;😅&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f9&gt; 2&#34;</span>) (kbd <span style="color:#e6db74">&#34;❤&#34;</span>))</span></span></code></pre></div>
+<p>这里不推荐使用 <strong>global-set-key</strong> 的方式,就像下面这种</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;f8&gt;&#34;</span>) (lambda () (interactive) (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;→&#34;</span>)))</span></span></code></pre></div>
+<p>这种方法的确可行,但在使用isearch时会失效</p>
+<h3 id="交换键盘按键">交换键盘按键<a hidden class="anchor" aria-hidden="true" href="#交换键盘按键">#</a></h3>
+<p>交换f11和f12</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f11&gt;&#34;</span>) (kbd <span style="color:#e6db74">&#34;&lt;f12&gt;&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-key</span> key-translation-map (kbd <span style="color:#e6db74">&#34;&lt;f12&gt;&#34;</span>) (kbd <span style="color:#e6db74">&#34;&lt;f11&gt;&#34;</span>))</span></span></code></pre></div>
+<h3 id="鼠标操作">鼠标操作<a hidden class="anchor" aria-hidden="true" href="#鼠标操作">#</a></h3>
+<ul>
+<li>取消鼠标的加速
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(setq mouse-wheel-progressive-speed <span style="color:#66d9ef">nil</span>)</span></span></code></pre></div></li>
+<li>控制鼠标每次移动的行数是鼠标每次能够移动两行
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(setq mouse-wheel-scroll-amount <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span>))</span></span></code></pre></div></li>
+<li>取消鼠标高亮
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(setq mouse-highlight <span style="color:#66d9ef">nil</span>)</span></span></code></pre></div></li>
+</ul>
+<h4 id="鼠标的语法">鼠标的语法<a hidden class="anchor" aria-hidden="true" href="#鼠标的语法">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>鼠标按键</th>
+<th>elisp表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>鼠标左键</td>
+<td>(kbd &ldquo;&lt;mouse-1&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标滚轮键</td>
+<td>(kbd &ldquo;&lt;mouse-2&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标右键</td>
+<td>(kbd &ldquo;&lt;mouse-3&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标滚轮向前(linux)</td>
+<td>(kbd &ldquo;&lt;mouse-4&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标滚轮向后(linux)</td>
+<td>(kbd &ldquo;&lt;mouse-5&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标滚轮向前(mac,win)</td>
+<td>(kbd &ldquo;&lt;wheel-up&gt;&rdquo;)</td>
+</tr>
+<tr>
+<td>鼠标滚轮向后(mac,win)</td>
+<td>(kbd &ldquo;&lt;wheel-down&gt;&rdquo;)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lisp-basics">lisp basics<a hidden class="anchor" aria-hidden="true" href="#lisp-basics">#</a></h2>
+<h3 id="基础">基础<a hidden class="anchor" aria-hidden="true" href="#基础">#</a></h3>
+<ul>
+<li>输出函数print
+格式:(print OBJECT &amp;optional PRINTCHARFUN)
+print接受一个输出对象和一个输出的目标buffer
+object即为输出对象,printcharfun即输出的目标buffer
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(progn
+</span></span><span style="display:flex;"><span>  (setq gbuffer (generate-new-buffer <span style="color:#e6db74">&#34;*my output*&#34;</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">print</span> <span style="color:#e6db74">&#34;fasdfs&#34;</span> gbuffer)
+</span></span><span style="display:flex;"><span>  (switch-to-buffer gbuffer))</span></span></code></pre></div></li>
+<li>unicode字符表示
+<strong>\uxxxx</strong> :接受四个16进制数
+<strong>\u00xxxxxx</strong> :接受六个16进制数</li>
+<li>处理字符串的函数
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>示例</th>
+<th>作用</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>(length &ldquo;abc&rdquo;)</td>
+<td>获得&quot;abc&quot;长度</td>
+<td>3</td>
+</tr>
+<tr>
+<td>substring</td>
+<td>(substring &ldquo;abc123&rdquo; 0 3)</td>
+<td>截取字符串0-3之间的子字符串</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>concat</td>
+<td>(concat &ldquo;some&rdquo; &ldquo;thing&rdquo;)</td>
+<td>字符串拼接</td>
+<td>something</td>
+</tr>
+<tr>
+<td>split-string</td>
+<td>(split-string &ldquo;xy_007_cat&rdquo; &ldquo;_&rdquo;)</td>
+<td>以&rsquo;_&lsquo;截取字符串</td>
+<td>(&ldquo;xy&rdquo;,&ldquo;007&rdquo;,&ldquo;cat&rdquo;)</td>
+</tr>
+<tr>
+<td>string-to-number</td>
+<td></td>
+<td>字符串转数字</td>
+<td></td>
+</tr>
+<tr>
+<td>number-to-string</td>
+<td></td>
+<td>数字转字符</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>相等判断
+equal:判断数据类型和值是否相同
+eq:判断是否为同一对象
+eql:与eq很像但两个相同的浮点数会返回t</li>
+</ul>
+<h3 id="数据类型">数据类型<a hidden class="anchor" aria-hidden="true" href="#数据类型">#</a></h3>
+<ul>
+<li>mapcar
+(mapcar FUNCTION SEQUENCE)
+会返回处理后的结果</li>
+<li>mapc
+与mapcar一样但不会返回结果,而返回nil</li>
+</ul>
+<h2 id="practical-emacs-lisp">practical emacs lisp<a hidden class="anchor" aria-hidden="true" href="#practical-emacs-lisp">#</a></h2>
+<h3 id="概述">概述<a hidden class="anchor" aria-hidden="true" href="#概述">#</a></h3>
+<h4 id="光标位置">光标位置<a hidden class="anchor" aria-hidden="true" href="#光标位置">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>point</td>
+<td>返回当前光标位置,其值为前面字符个数,包括空格和回车</td>
+</tr>
+<tr>
+<td>region-beginning</td>
+<td>返回选中区域的开头字符位置</td>
+</tr>
+<tr>
+<td>region-end</td>
+<td>返回选中区域的结尾字符位置</td>
+</tr>
+<tr>
+<td>line-beginning-position</td>
+<td>返回行首字符位置</td>
+</tr>
+<tr>
+<td>line-end-position</td>
+<td>返回行为字符位置</td>
+</tr>
+<tr>
+<td>point-min</td>
+<td>返回整个文件开头位置</td>
+</tr>
+<tr>
+<td>point-max</td>
+<td>返回整个文件结尾位置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="光标移动和文本搜索">光标移动和文本搜索<a hidden class="anchor" aria-hidden="true" href="#光标移动和文本搜索">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span><span style="color:#75715e">;;跳转到39字符的位置</span>
+</span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">goto-char</span> <span style="color:#ae81ff">39</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;使光标前移和后移四个字符</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">forward-char</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">backward-char</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;向前搜&#34;some&#34;和向后搜索&#34;some&#34;</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">search-forward</span> <span style="color:#e6db74">&#34;some&#34;</span>) <span style="color:#75715e">; to end of “some”</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">search-backward</span> <span style="color:#e6db74">&#34;some&#34;</span>) <span style="color:#75715e">; to beginning of “some”</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;向前搜索数字和向后搜索数字</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;[0-9]&#34;</span>) <span style="color:#75715e">; digit</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">re-search-backward</span> <span style="color:#e6db74">&#34;[0-9]&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;将光标前移和将光标后移,知道找到非小写字母</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">skip-chars-forward</span> <span style="color:#e6db74">&#34;a-z&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">skip-chars-backward</span> <span style="color:#e6db74">&#34;a-z&#34;</span>)</span></span></code></pre></div>
+<h4 id="修改文本">修改文本<a hidden class="anchor" aria-hidden="true" href="#修改文本">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span><span style="color:#75715e">;;从光标开始删除9个字符</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">delete-char</span> <span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;删除3-10位置的字符</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">delete-region</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;在当前光标处插入字符串</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;i ♥ cats&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;获取当前buffer71-300的字符串,并赋值给x</span>
+</span></span><span style="display:flex;"><span>(setq x (<span style="color:#a6e22e">buffer-substring</span> <span style="color:#ae81ff">71</span> <span style="color:#ae81ff">300</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;将7-300处的字母转为大写</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">capitalize-region</span> <span style="color:#ae81ff">71</span> <span style="color:#ae81ff">300</span>)</span></span></code></pre></div>
+<h4 id="buffer操作">buffer操作<a hidden class="anchor" aria-hidden="true" href="#buffer操作">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span><span style="color:#75715e">;;获取buffer名称</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">buffer-name</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;返回当前buffer文件的绝对路径</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">buffer-file-name</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; switch to the buffer named xyz</span>
+</span></span><span style="display:flex;"><span>(switch-to-buffer <span style="color:#e6db74">&#34;xyz&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;保存当前buffer</span>
+</span></span><span style="display:flex;"><span>(save-buffer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; 关闭名为&#34;xyz&#34;的buffer</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">kill-buffer</span> <span style="color:#e6db74">&#34;xyz&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;临时将&#34;xyz&#34;buffer作为当前buffer,函数结束后将返回之前操作的buffer</span>
+</span></span><span style="display:flex;"><span>(with-current-buffer <span style="color:#e6db74">&#34;practical-elisp.el&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;;这里可以写一些插入删除等操作</span>
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+<h4 id="文件操作">文件操作<a hidden class="anchor" aria-hidden="true" href="#文件操作">#</a></h4>
+<ul>
+<li>基本操作
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  <span style="color:#75715e">;; open a file (in a buffer)</span>
+</span></span><span style="display:flex;"><span>(find-file <span style="color:#e6db74">&#34;~/&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; same as “Save As”.</span>
+</span></span><span style="display:flex;"><span>(write-file path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; insert file into current position</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">insert-file-contents</span> path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; append a text block to file</span>
+</span></span><span style="display:flex;"><span>(append-to-file start-pos end-pos path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; renaming file</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">rename-file</span> file-name new-name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; copying file</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">copy-file</span> old-name new-name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; deleting file</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">delete-file</span> file-name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; get dir path</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">file-name-directory</span>  full-path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; get filename part</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">file-name-nondirectory</span> full-path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; get filename&#39;s suffix</span>
+</span></span><span style="display:flex;"><span>(file-name-extension file-name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; get filename sans suffix</span>
+</span></span><span style="display:flex;"><span>(file-name-sans-extension file-name)</span></span></code></pre></div></li>
+<li>narrow操作
+narrow操作可以使文件只有指定的部分可见,而其余部分不可见,除此以外它的效果与删除效果几乎相同,它会对光标行数等产生影响.可以调用&quot;widen&quot;把刚才隐藏的部分显示出来
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>narrow-to-defun</td>
+<td>仅显示当前光标所在的函数</td>
+</tr>
+<tr>
+<td>narrow-to-page</td>
+<td>仅显示当前页面中可见的内容</td>
+</tr>
+<tr>
+<td>narrow-to-region</td>
+<td>仅显示指定位置的内容</td>
+</tr>
+<tr>
+<td>widen</td>
+<td>显示隐藏部分的内容</td>
+</tr>
+<tr>
+<td>buffer-narrow-p</td>
+<td>判断当前buffer是否有隐藏内容</td>
+</tr>
+<tr>
+<td>save-excursion</td>
+<td>保存当前光标位置,执行完body里的内容后返回</td>
+</tr>
+<tr>
+<td>save-restriction</td>
+<td>保存当前缓冲区,执行完body里的内容后返回通常与narrow一起使用</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="案例">案例<a hidden class="anchor" aria-hidden="true" href="#案例">#</a></h4>
+<ul>
+<li>替换选中区域的文本
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defun geezer-replace-greek-region ()
+</span></span><span style="display:flex;"><span> (interactive)
+</span></span><span style="display:flex;"><span> (let ((start (<span style="color:#a6e22e">region-beginning</span>))
+</span></span><span style="display:flex;"><span>       (end (<span style="color:#a6e22e">region-end</span>)))
+</span></span><span style="display:flex;"><span>   (save-restriction
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">narrow-to-region</span> start end)
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>     (while (<span style="color:#a6e22e">search-forward</span> <span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">replace-match</span> <span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>))
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>     (while (<span style="color:#a6e22e">search-forward</span> <span style="color:#e6db74">&#34;b&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">replace-match</span> <span style="color:#e6db74">&#34;B&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)))))</span></span></code></pre></div></li>
+<li>删除括号中的内容
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defun geezer-delete-pair ()
+</span></span><span style="display:flex;"><span> (interactive)
+</span></span><span style="display:flex;"><span> (save-excursion
+</span></span><span style="display:flex;"><span>   (let (p1 p2)
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">skip-chars-backward</span> <span style="color:#e6db74">&#34;^([{&lt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>     (setq p1 (<span style="color:#a6e22e">point</span>))
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">skip-chars-forward</span> <span style="color:#e6db74">&#34;^)]}&lt;&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>     (setq p2 (<span style="color:#a6e22e">point</span>))
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">delete-region</span> p1 p2))))</span></span></code></pre></div></li>
+</ul>
+<h4 id="defun中的interactive的作用">defun中的interactive的作用<a hidden class="anchor" aria-hidden="true" href="#defun中的interactive的作用">#</a></h4>
+<p>定义函数时interactive的作用有两个</p>
+<ol>
+<li>是函数可以以命令的形式调用,及通过M-x的方式</li>
+<li>在interactive后加上参数可以是调用该函数时实现交互式传参</li>
+</ol>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>参数说明</p>
+<ul>
+<li>(ineractive)
+可以用命令调用</li>
+<li>(ineractive string)
+string第一个字符指定输入的内容,例如为s则表示为输入一个字符串,为n则表示数字等,
+若要从交互界面获取多个参数可以用回车隔开
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun ask-name-and-age (x y)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Ask name and age&#34;</span>
+</span></span><span style="display:flex;"><span>(interactive
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;sEnter name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  nEnter age:&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;Name is: %s, Age is: %d&#34;</span> x y))</span></span></code></pre></div></li>
+<li>(ineractive list)
+这种方式是最常用的一种方式,list中可以是任何表达式,只要能够返回对应参数个数的list即可
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun ask-name-and-age2 (x y)
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Ask name and age&#34;</span>
+</span></span><span style="display:flex;"><span>(interactive
+</span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">list</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">read-string</span> <span style="color:#e6db74">&#34;Enter
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">name:&#34;</span>)
+</span></span><span style="display:flex;"><span>  (read-number <span style="color:#e6db74">&#34;Enter age:&#34;</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;Name is: %s, Age is: %d&#34;</span> x y))</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>thing-at-point</p>
+<p>函数调用:(thing-at-point THING &amp;optional NO-PROPERTIES)
+当我们用interactive进行交互时,使用 <strong>thing-at-point</strong> 是非常方便的,
+例如,我们在寻求帮助时,使用的describe-function,describe-variable(对应快捷键C-h f,C-h k)时,
+就会获取当前光标处的函数或变量,使得我们在调用上面两个命令时,如果我们不做输入,它会默认选择光标处的函数或变量
+thing-at-point不仅可以获取当前光标处的函数和变量,同时也可以获取光标处的
+&lsquo;symbol, &rsquo;list, &lsquo;sexp, &lsquo;defun, &lsquo;filename, &lsquo;url, &rsquo;email, &lsquo;uuid, &lsquo;word, &lsquo;sentence, &lsquo;whitespace, &rsquo;line, &rsquo;number, &lsquo;page.
+只需要将 <strong>thing-at-point</strong> 的第二个参数设为上面这些值即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defun test ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;获取单词&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;%s&#34;</span> (thing-at-point <span style="color:#e6db74">&#39;word</span>)))</span></span></code></pre></div>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>bounds-of-thing-at-point</p>
+<p>获取thing-at-point的边界,返回的是一个cons,其第一个元素为边界的开始的位置,第二个元素为边界结束的位置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defun test ()
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (let (bounds pos1 pos2 mything)
+</span></span><span style="display:flex;"><span>    (setq bounds (bounds-of-thing-at-point <span style="color:#e6db74">&#39;symbol</span>))
+</span></span><span style="display:flex;"><span>    (setq pos1 (<span style="color:#a6e22e">car</span> bounds))
+</span></span><span style="display:flex;"><span>    (setq pos2 (<span style="color:#a6e22e">cdr</span> bounds))
+</span></span><span style="display:flex;"><span>    (setq mything (<span style="color:#a6e22e">buffer-substring-no-properties</span> pos1 pos2))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">message</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;thing begin at [%s],end at [%s],thing is [%s]&#34;</span>
+</span></span><span style="display:flex;"><span>     pos1 pos2 mything))</span></span></code></pre></div>
+</li>
+</ul>
+<h4 id="查找替换">查找替换<a hidden class="anchor" aria-hidden="true" href="#查找替换">#</a></h4>
+<ul>
+<li>search-forward和search-backward.
+(search-forward STRING &amp;optional BOUND NOERROR COUNT)
+将关闭移动到要查找的字符串开始位置,</li>
+<li>re-search-forward和re-search-backward
+(re-search-forward REGEXP &amp;optional BOUND NOERROR COUNT)
+与上面函数功能一样,不过匹配的是正则表达式,而非字符串</li>
+<li>search-forward-regexp和search-backward-regexp
+分别是re-search-forward和re-search-backward的别名</li>
+<li>case-fold-search变量其值默认为t,表示查找是忽略大小写为nil时,表示不忽略大小写</li>
+</ul>
+<h3 id="elisp脚本">elisp脚本<a hidden class="anchor" aria-hidden="true" href="#elisp脚本">#</a></h3>
+<h4 id="运行elisp脚本">运行elisp脚本<a hidden class="anchor" aria-hidden="true" href="#运行elisp脚本">#</a></h4>
+<p>elisp可以运行在终端,比如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>emacs --script  /path/to/elisp-file</span></span></code></pre></div>
+<h4 id="buffer相关函数">buffer相关函数<a hidden class="anchor" aria-hidden="true" href="#buffer相关函数">#</a></h4>
+<ul>
+<li>buffer-name
+(buffer-name &amp;optional BUFFER)
+获取当前buffer名字</li>
+<li>buffer-file-name
+(buffer-file-name &amp;optional BUFFER)
+返回当前buffer处文件的绝对路径,如果不存在则返回nil</li>
+<li>with-current-buffer
+(with-current-buffer BUFFER-OR-NAME &amp;rest BODY)
+将某个缓冲区作为临时的缓冲区,执行完body里的内容后返回</li>
+<li>set-buffer
+(set-buffer BUFFER-OR-NAME)
+跳转到指定buffer,但该buffer不可见,如果需要可见可使用switch-to-buffer</li>
+<li>generate-new-buffer
+(generate-new-buffer NAME)
+新建一个buffer</li>
+<li>get-buffer-create
+(get-buffer-create BUFFER-OR-NAME)
+新建一个buffer,但不将其作为当前buffer</li>
+<li>kill-buffer
+(kill-buffer &amp;optional BUFFER-OR-NAME)
+关闭指定buffer</li>
+</ul>
+<h4 id="文件相关函数">文件相关函数<a hidden class="anchor" aria-hidden="true" href="#文件相关函数">#</a></h4>
+<ul>
+<li>directory-files
+返回一个带有该目录下所有指定文件的list
+不会递归查找,即如果该目录下有子目录不会对子目录进行查找
+(directory-files DIRECTORY &amp;optional FULL MATCH NOSORT)
+参数1:目录路径参数2:返回的文件是否为绝对路径参数3:文件匹配的方式参数4:是否排序</li>
+<li>directory-files-recursively
+递归查找指定文件,后返回一个带有所有指定文件的list
+会递归查找,即如果该目录下有子目录会对子目录进行查找由于会递归查找所以会返回文件的相对路近,而非只含文件名
+(directory-files-recursively DIR REGEXP &amp;optional INCLUDE-DIRECTORIES)</li>
+</ul>
+<h2 id="elisp-example">elisp example<a hidden class="anchor" aria-hidden="true" href="#elisp-example">#</a></h2>
+<h2 id="emacs-write-major-mode">emacs write major-mode<a hidden class="anchor" aria-hidden="true" href="#emacs-write-major-mode">#</a></h2>
+<h3 id="font-lock-mode">font lock mode<a hidden class="anchor" aria-hidden="true" href="#font-lock-mode">#</a></h3>
+<p>它是emacs内置的一个minor-mode,它与当前buffer的语法高亮有关,其高亮规则通过两种方式实现</p>
+<ol>
+<li>Syntactic fontification
+一些与注释字符串,符号相关的注释,它的注释内容存放在,Syntax Table中,可通过describe-syntax命令查看</li>
+<li>Search based fontification
+使用正则表达式查找相关内容进行高亮,通常高亮的是一些关键字,函数名,变量名之类的,它依赖于,font-lock-defaults变量</li>
+</ol>
+<h3 id="font-lock-defaults">font-lock-defaults<a hidden class="anchor" aria-hidden="true" href="#font-lock-defaults">#</a></h3>
+<p>该变量通常是一个list,为nil的话将不会进行任何高亮,而list里面通常有四个关键变量</p>
+<ol>
+<li>font-lock-keywords
+关键字的高亮规则</li>
+<li>font-lock-keywords-only
+字符串和注释等的高亮规则</li>
+<li>font-lock-keywords-case-fold-search
+正则表达式是否区分大小写</li>
+<li>font-lock-syntax-table
+与syntax有关</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href=""></a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
