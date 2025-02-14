@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="shell编程基础使用变量变量使用要通常需要加$才能使用。关于变量什么时候需要加$什么时候不需要，一般来说如果是使用变量这需要加$,如果是操作变量则不需要，这里只是说大部分情况下都是这样，也有小部分情况例外。 12value&#x3D;&quot;aa&quot;  &#x2F;&#x2F; 这里我们是令value等于“aa”，在这里是对变量赋值，属于操作变量，故value无需加$echo $value &#x2F;&#x2F; 这里我们是输出v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell编程">
+<meta property="og:url" content="http://example.com/2023/09/28/Shell%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="shell编程基础使用变量变量使用要通常需要加$才能使用。关于变量什么时候需要加$什么时候不需要，一般来说如果是使用变量这需要加$,如果是操作变量则不需要，这里只是说大部分情况下都是这样，也有小部分情况例外。 12value&#x3D;&quot;aa&quot;  &#x2F;&#x2F; 这里我们是令value等于“aa”，在这里是对变量赋值，属于操作变量，故value无需加$echo $value &#x2F;&#x2F; 这里我们是输出v">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png">
+<meta property="article:published_time" content="2023-09-28T09:23:25.000Z">
+<meta property="article:modified_time" content="2025-02-14T10:33:56.926Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
+  
+  
+  
+  <title>shell编程 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geez`s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="shell编程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-28 17:23" pubdate>
+          2023年9月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">shell编程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="shell编程基础"><a href="#shell编程基础" class="headerlink" title="shell编程基础"></a>shell编程基础</h1><h2 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h2><p>变量使用要通常需要加<code>$</code>才能使用。关于变量什么时候需要加<code>$</code>什么时候不需要，一般来说如果是使用变量这需要加<code>$</code>,如果是操作变量则不需要，这里只是说大部分情况下都是这样，也有小部分情况例外。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">value=&quot;aa&quot;  // 这里我们是令value等于“aa”，在这里是对变量赋值，属于操作变量，故value无需加$<br>echo $value // 这里我们是输出value的值，属于使用value所以需要加$<br></code></pre></td></tr></table></figure>
+
+<h2 id="命令替换"><a href="#命令替换" class="headerlink" title="命令替换"></a>命令替换</h2><p>在shell中允许提取命令的输出并赋值给变量。可以使用<code>$(命令)</code>和`命令`两种方式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">date<br>vdate1=`date`<br>vdate2=$(date)<br>echo $vdate1<br>echo $vdate2<br></code></pre></td></tr></table></figure>
+
+<h2 id="重定向输入输出"><a href="#重定向输入输出" class="headerlink" title="重定向输入输出"></a>重定向输入输出</h2><h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><p>使用<code>&gt;</code>来重定向输出。最常见是输出重定向到文件，若文件不存在则会通过默认的umask设置创建一个文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">date &gt; test1<br>cat test1<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>&gt;&gt;</code>来重定向输出，但与<code>&gt;</code>不同的是<code>&gt;&gt;</code>是追加，而<code>&gt;</code>是覆盖。</p>
+<h3 id="重定向输入"><a href="#重定向输入" class="headerlink" title="重定向输入"></a>重定向输入</h3><p>使用<code>&lt;</code>重定向输入。最常见的是输入重定向为文件，也就是从文件中读取输入。这个就要求文件必须存在。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wc &lt; test1<br></code></pre></td></tr></table></figure>
+
+<p>重定向中的<code>&lt;&lt;</code>被称作内联输出重定向，这种方法无须使用文件进行重定向，只需要在命令行中指定即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">command &lt;&lt; mark<br></code></pre></td></tr></table></figure>
+
+<p>运行命令后会进入待输入的界面，只有当输入为mark是才会结束，并执行命令。</p>
+<h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="expr命令"><a href="#expr命令" class="headerlink" title="expr命令"></a>expr命令</h3><p>expr允许处理数学表达式，expr能识别的常见数学操作和少数字符串操作如下。</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png" srcset="/img/loading.gif" lazyload alt="image-20240610212957630"></p>
+<p>使用方法是在expr命令后面接上上图中的操作符。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">expr 1 + 4   # 回输出5<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是对于操作符和操作数之间要有空格，对于在shell中有其他含义的操作符要加<code>\</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">expr 1+4  // 报错 1和+之间，+和4直接需要有空格隔开<br>expr 1 + 4 // 正确<br>expr 2 * 4 // 错误，*在shell中有其他含义<br>expr 2 \* 4 // 正确<br></code></pre></td></tr></table></figure>
+
+<h3 id="方括号"><a href="#方括号" class="headerlink" title="方括号[]"></a>方括号[]</h3><p>现在更多的是采用<code>[]</code>的方式来执行数学表达式，它是兼通expr，也就是说expr的操作使用<code>[]</code>也能实现。所以更推荐使用<code>[]</code>而非expr，并且<code>[]</code>也比较易于使用，也不用担心会将操作符与shell中有特殊含义的符号混淆比如expr中的*号，看着也简洁。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">var1=$[ 1 * 4 ]<br>echo $var1<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="退出脚本"><a href="#退出脚本" class="headerlink" title="退出脚本"></a>退出脚本</h2><h3 id="查看退出码"><a href="#查看退出码" class="headerlink" title="查看退出码"></a>查看退出码</h3><p>shell中有一个专门的变量<code>$?</code>它保存的是上个命令的退出码。如果运行的是shell脚本那么上一个命令显然就是shell脚本最后执行的命令。以下是一些常见的退出码。</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png" srcset="/img/loading.gif" lazyload alt="image-20240610215807838"></p>
+<h3 id="exit命令"><a href="#exit命令" class="headerlink" title="exit命令"></a>exit命令</h3><p>在shell中也可以使用exit命令显示退出脚本，exit允许指定一个退出码，这和C语言main中的return很相似，C语言main函数返回的是一个退出码，通常是0表示没有错误，这也与shell类似。</p>
+<h1 id="结构化命令"><a href="#结构化命令" class="headerlink" title="结构化命令"></a>结构化命令</h1><h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><p>shell也支持条件控制if，通常用法是:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then</span><br>if command<br>then<br>	commands<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then-else</span><br>if command<br>then<br>	commands1<br>else<br>	commands2<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then-elif-then-else</span><br>if command1<br>then<br>	commands1<br>elif command2<br>then<br>	commands2<br>else<br>	commands3<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>这是常见的if用法，其中if-then也可以写成下面这样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">if command1; then<br>	commands1<br>elif command2; then<br>	commands2<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是上面if后面接的是command也就是命令，而不是像其他编程语言一样接受一个不是true就是false的谓词。shell中的if会根据command命令的退出码来判断是否执行then后面的内容。换句话说，若command的退出码为0(command执行成功)用其他语言表示就是代表这个条件为真，那么执行这个条件之后的内容(也就是then之后的内容)，其余非0的退出码(command执行失败)均表示条件为假。下面是一些例子</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">if aaa; then<br>	echo &quot;command aaa exec suss&quot;<br>elif ls; then<br>	echo &quot;command ls exec suss&quot;<br>else<br>	echo &quot;none command exec suss&quot;<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>这里aaa是随便输入的，它不是命令，但执行它也会返回一个非0的退出码，所以aaa条件部分不会执行，而ls命令显然会执行成功，返回0退出码，故会输出”command ls exec suss”。</p>
+<h2 id="test命令-更灵活使用if"><a href="#test命令-更灵活使用if" class="headerlink" title="test命令(更灵活使用if)"></a>test命令(更灵活使用if)</h2><p>test命令用于测试某个条件是否成立，若成立则返回0退出码，不成立则返回非0退出码，使用test我们就可以间接的使用shell中的if实现类似其他语言中的if的工作方式即通过条件真假来判断是否执行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">test</span>测试变量时，表测试变量是否不为空，非空返回状态码0，空返回非0</span><br>val=&quot;&quot;<br>if test $val; then<br>	ehco &quot;val has content&quot;<br>else<br>	ehco &quot;val has not content&quot;  # val为空，这行会执行<br>fi<br><br>val=&quot;aaa&quot;<br>if test $val; then<br>	ehco &quot;val has content&quot;	# val非空，这行会执行<br>else<br>	ehco &quot;val has not content&quot;  <br>fi<br></code></pre></td></tr></table></figure>
+
+<p>shell也提供了更灵活使用test方式，也就是使用<code>[]</code>,注意与expr命令使用<a href="#%E6%96%B9%E6%8B%AC%E5%8F%B7%5B%5D">方括号[]</a>作为替代的方式区别开来。注意command两侧有空格，即与中括号要有空格隔开。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ condition ]; then<br>	command<br>fi<br></code></pre></td></tr></table></figure>
+
+<h3 id="数值比较"><a href="#数值比较" class="headerlink" title="数值比较"></a>数值比较</h3><p>使用test常见的数值比较由下图列出。由因为单词缩写构成，eq(equal：等于),ge(greater equal：大于等于)，gt(greater than：大于)，le(less equal：小于等于)，lt(less than：小于)，ne(not equal：不等于)</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png" srcset="/img/loading.gif" lazyload alt="image-20240610225902566"></h3><h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>使用test常见的数值比较如下</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png" srcset="/img/loading.gif" lazyload alt="image-20240610230308890"></p>
+<h3 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h3><p>使用test常见的文件比较如下</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png" srcset="/img/loading.gif" lazyload alt="image-20240610230520423"></p>
+<h2 id="复合条件测试"><a href="#复合条件测试" class="headerlink" title="复合条件测试"></a>复合条件测试</h2><p>if允许使用复合条件测试，用法如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[ contition1 ] &amp;&amp; [ condition2 ] # and条件<br>[ contition1 ] || [ condition2 ] # 或条件<br></code></pre></td></tr></table></figure>
+
+<h2 id="if-then高级特性"><a href="#if-then高级特性" class="headerlink" title="if-then高级特性"></a>if-then高级特性</h2><h3 id="使用双括号"><a href="#使用双括号" class="headerlink" title="使用双括号"></a>使用双括号</h3><p>双括号允许我们使用高级数学表达式，实际上就是其他编程语言常见的一些东西</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png" srcset="/img/loading.gif" lazyload alt="image-20240610232434091"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">val=10<br>if (( $val ** 2 &gt;90)) # 10的平方是否大于90<br></code></pre></td></tr></table></figure>
+
+<h3 id="双方括号"><a href="#双方括号" class="headerlink" title="双方括号"></a>双方括号</h3><p>针对字符串比较的高级特性，使用方法如下</p>
+<blockquote>
+<p>[[ expression ]]</p>
+</blockquote>
+<p>双方括号里的expression使用了test命令中采用的标准字符串比较。但它提供了test命令未提供的另一个特性一模式匹配(pattern matching)。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [[ $USER ==r* ]]<br>then<br>	echo &quot;Hello SUSER&quot;<br>else<br>	echo &quot;Sorry,I do not know you&quot;<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>以上程序使用了regex表达式，意思是USER是否以是以r为开头的字符串</p>
+<h2 id="case命令"><a href="#case命令" class="headerlink" title="case命令"></a>case命令</h2><p>case与if-then-elif-then效果类似，case一般用于if-else要写很长的情况也就是说有多个条件，类似于C语言中的switch-case语句。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">case variable in<br>pattern1 | pattern2) command1;;<br>pattern3) command2;;<br>*) default commands;;<br>esac<br></code></pre></td></tr></table></figure>
+
+<p>variable会与模式相匹配，若匹配就会执行之后的command，其中pattern1 | pattern2表示只要匹配pattern1或pattern2中的一个模式就执行之后的命令。</p>
+<p>下面是一个if-else改写成case的例子。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs shell">if SUSER &quot;rich&quot;<br>then<br>	echo &quot;Welcome SUSER&quot;<br>	echo &quot;Please enjoy your visit&quot;<br>elif SUSER &quot;barbara&quot;<br>then<br>	echo &quot;Welcome SUSER&quot;<br>	echo &quot;Please enjoy your visit&quot;<br>elif SUSER &quot;testing&quot;<br>then<br>	echo &quot;Special testing account&quot;<br>elif SUSER &quot;jessica&quot;<br>then<br>	echo &quot;Do not forget to logout when you&#x27;re done&quot;<br>else<br>	echo &quot;Sorry,you are not allowed here&quot;<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-keyword">case</span>改写</span><br>case SUSER in<br>rich | barbara)<br>	echo &quot;Welcome,SUSER&quot;<br>	echo &quot;Please enjoy your visit&quot;;;<br>testing)<br>	echo &quot;Special testing account&quot;;;<br>jessica)<br>	echo &quot;Do not forget to log off when you&#x27;re done&quot;;;<br>*)<br>	echo &quot;Sorry,you are not allowed here&quot;;;<br>esac<br></code></pre></td></tr></table></figure>
+
+<h2 id="for命令"><a href="#for命令" class="headerlink" title="for命令"></a>for命令</h2><p>shell中的循环语句使用的是for，其用法如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">for var in list; do<br>	command<br>done<br></code></pre></td></tr></table></figure>
+
+<h3 id="使用for命令从文件中读取"><a href="#使用for命令从文件中读取" class="headerlink" title="使用for命令从文件中读取"></a>使用for命令从文件中读取</h3><p>下面是一个从文件中获取值的例子。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">for val in $(cat status)<br>	echo $val<br>done<br></code></pre></td></tr></table></figure>
+
+<p>status文件如下:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs txt">aaa bbb<br>ccc ddd<br>eee<br></code></pre></td></tr></table></figure>
+
+<p>执行这个脚本会发现输出如下</p>
+<blockquote>
+<p>aaa</p>
+<p>bbb</p>
+<p>ccc</p>
+<p>ddd</p>
+<p>eee</p>
+</blockquote>
+<h3 id="更改字段分隔符-IFS"><a href="#更改字段分隔符-IFS" class="headerlink" title="更改字段分隔符(IFS)"></a>更改字段分隔符(IFS)</h3><p>上节中的例子可以发现输出并没有像我们想象的那样一行一行的输出，这因为shell内部有个名为IFS(Internal Field Separator)的环境变量，中文名为内部字段分隔符，其默认值是空格，制表位，换行符。所以上面当shell识别到空格时它会以为是一个新的字段开始，就有了上面的输出，要实现每次读一行就要修改IFS变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">IFS.OLD=$IFS<br>IFS=$&#x27;\n&#x27;<br>for val in $(cat status)<br>	echo $val<br>done<br>IFS=$IFS.OLD<br></code></pre></td></tr></table></figure>
+
+<p>上面程序就会输出</p>
+<blockquote>
+<p>aaa bbb<br>ccc ddd<br>eee</p>
+</blockquote>
+<p>这也是我们期待的，同时上面程序也是推荐的做法，先使用IFS.OLD保存默认IFS变量，用完后在是IFS变量修改为默认值。</p>
+<h2 id="while命令"><a href="#while命令" class="headerlink" title="while命令"></a>while命令</h2><p>while命令理解为是if与for的结合体，其用法如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">while test command; do<br>	commands<br>done<br></code></pre></td></tr></table></figure>
+
+<h2 id="until命令"><a href="#until命令" class="headerlink" title="until命令"></a>until命令</h2><p>until命令与while命令相反但用法几乎一致，until命令是如果until后面的命令返回非0退出码则继续执行，而while则是要0的退出码才能继续执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">until test command; do<br>	commands<br>done<br></code></pre></td></tr></table></figure>
+
+<p>下面是while和until对比的程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">var=100<br>until [ $var -eq 0 ]<br>	echo $var<br>	var=$[ $var - 1 ]<br>done<br><br>var=100<br>while [ $var -eq 0 ]<br>	echo $var<br>	var=$[ $var - 1 ]<br>done<br></code></pre></td></tr></table></figure>
+
+<p>until部分程序的含义是如果var不等于0则输出，而while部分程序则是如果var等于0就输出</p>
+<h2 id="循环控制"><a href="#循环控制" class="headerlink" title="循环控制"></a>循环控制</h2><h3 id="break命令"><a href="#break命令" class="headerlink" title="break命令"></a>break命令</h3><p>break命令若是单独使用则与C语言中break功能类似，表示退出最内层的循环。for,while,until均可以使用。不一样的是shell中break可以指定参数，说明退出哪个循环，默认情况下是1，代表但前最内层的循环。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">for（(a=1;a&lt;4;a++))<br>do<br>	echo &quot;Outer loop:Sa&quot;<br>	for（(b=1;b&lt;100;b++))<br>	do<br>		if sb -gt 4<br>		then<br>			break 2<br>		fi<br>		echo Inner loop:$b&quot;<br>	done<br>done<br></code></pre></td></tr></table></figure>
+
+<p>上面程序中<code>for（(b=1;b&lt;100;b++))</code>是最内层循环，<code>for（(a=1;a&lt;4;a++))</code>外层循环，break命令会把但前所在的循环当作第一层循环，在依次往外推，上面代码中break 2就表示退出地二层循环，对于break 2所在的循环而已第二层循环就是<code>for（(a=1;a&lt;4;a++))</code>。</p>
+<h3 id="continue命令"><a href="#continue命令" class="headerlink" title="continue命令"></a>continue命令</h3><p>continue命令与break一样，在单独使用时与C语言中continue相似，但continue也可以指定继续往下执行哪一层循环。</p>
+<h2 id="处理循环输出"><a href="#处理循环输出" class="headerlink" title="处理循环输出"></a>处理循环输出</h2><p>从上面可以看出for,while,until的结束都以<code>done</code>结尾，但我们通常要进行循环输出重定向是可以在<code>done</code>后面添加重定向命令，例如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">for file in /home/rich/*<br>do<br>	if [-d &quot;sfile&quot;<br>	then<br>		echo &quot;sfile is a directory&quot;<br>	elif<br>		echo &quot;sfile is a file&quot;<br>	fi<br>done  &gt; output.txt<br></code></pre></td></tr></table></figure>
+
+<p>上面程序表示将for循环的输出重定向到output.txt中，但不会影响后续输出。</p>
+<h1 id="处理用户输入"><a href="#处理用户输入" class="headerlink" title="处理用户输入"></a>处理用户输入</h1><h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><h3 id="读取参数"><a href="#读取参数" class="headerlink" title="读取参数"></a>读取参数</h3><p>在shell中命令行参数有特殊变量代替，$0代表程序名，$1是第一个参数，$2是第二个参数…$9是第九个参数，之后若超过两位数的参数需要加{}，比如${10},${11}代表第十个和第十一个参数,而不是$10,$11。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">test.sh</span><br>echo $10<br>echo $&#123;10&#125;<br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">sh test.sh 1 2 3 4 5 6 7 8 9 0</span><br>10<br>0<br></code></pre></td></tr></table></figure>
+
+<p>若使用$10，shell会将<code>$10</code>分成两部分处理即<code>$1</code>和<code>0</code>。上面程序中$1是1，而0不处理直接输出所以<code>echo $10</code>输出是10。</p>
+<h3 id="特殊参数变量"><a href="#特殊参数变量" class="headerlink" title="特殊参数变量"></a>特殊参数变量</h3><ul>
+<li>$#：代表参数个数</li>
+<li>$*：将命令行上提供的所有参数当作一个单词保存。</li>
+<li>$@：将命令行上提供的所有参数当作同一字符串中的多个独立的单词</li>
+</ul>
+<p><code>$*</code>和<code>$@</code>的主要区别是，$*是一个整体，$@是一个个体使用for遍历时可以逐个输出命令行传过来的参数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">test.sh</span><br>for var in &quot;$*&quot;; do<br>	echo <br></code></pre></td></tr></table></figure>
+
+<h2 id="处理选项"><a href="#处理选项" class="headerlink" title="处理选项"></a>处理选项</h2><h3 id="getopt命令"><a href="#getopt命令" class="headerlink" title="getopt命令"></a>getopt命令</h3><p>getopt命令可以接受一系列任意形式的命令行选项和参数，并自动将它们转换成适当的格式。它的命令格式如下：</p>
+<blockquote>
+<p>getopt optstring parameters </p>
+</blockquote>
+<p>optstring是这个过程的关键所在。它定义了命令行有效的选项字母，还定义了哪些选项字母需要参数值。若选项值需要参数则在该选项后加<code>:</code>即可。例如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">getopt ab:<span class="hljs-built_in">cd</span> -a -b <span class="hljs-built_in">test</span> -c test2 -d</span><br>-a -b test -c -d -- test2<br></code></pre></td></tr></table></figure>
+
+<p>上面程序中只有b后面有:所以选项b需要参数，而c不需要所及即便我们写了<code>-c test2</code>getopt函数也知道-c是不需要参数的，所以把它当作普通参数。</p>
+<p>值得注意的是getopt只是将它们转换成了适当的格式，实际命令参数并未改变，意思就是我们调用getopt，命令行参数仍未改变，要想在程序中改变命令行参数需要用到set命令，set命令的–选项会将命令参数替换为set命令的命令行值。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">test.sh</span><br>replace=$(getopt ab:cd &quot;$@&quot;)<br>echo &quot;param befor replace :$*&quot;<br>set -- $replace<br>echo &quot;------------------&quot;<br>echo &quot;param after replace :$*&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">sh test.sh</span><br>param befor replace :-a -b test -c test1 -d test2<br>------------------<br>param after replace :-a -b test -c -d -- test1 test2<br></code></pre></td></tr></table></figure>
+
+<p>明显可以看到getopt只是将命令行参数转换成适当的格式，并未改变命令行参数，而真正改变命令行参数的是<code>set --</code>命令</p>
+<h3 id="getopts命令-getopt扩展"><a href="#getopts命令-getopt扩展" class="headerlink" title="getopts命令(getopt扩展)"></a>getopts命令(getopt扩展)</h3><h2 id="read命令"><a href="#read命令" class="headerlink" title="read命令"></a>read命令</h2><p>read命令读取用户输入，使用read可以从标准输入中读取也能从文件中读取</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>shell编程</div>
+      <div>http://example.com/2023/09/28/Shell编程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/28/STL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="STL源码剖析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">STL源码剖析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/28/Unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" title="Unix编程">
+                        <span class="hidden-mobile">Unix编程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第二章 变量和基本类型复合数据类型引用引用也即给对象起别名 123int i&#x3D;0;&#x2F;&#x2F; ri为i的引用int &amp;ri&#x3D;i; 引用注意事项 123456789&#x2F;&#x2F; 引用必须时对一个对象的引用int &amp;ri&#x3D;10; &#x2F;&#x2F;错误&#x2F;&#x2F; 引用必须为同一种类型double pi&#x3D;3.14;int &amp;rpi&#x3D;pi; &#x2F;&#x2F;错误&#x2F;&#x2F; 引用必须要有初始化int &amp;ra; &#x2F;&#x2F;错误，为初始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ Primer学习笔记">
+<meta property="og:url" content="http://example.com/2023/09/28/C++%20Primer/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第二章 变量和基本类型复合数据类型引用引用也即给对象起别名 123int i&#x3D;0;&#x2F;&#x2F; ri为i的引用int &amp;ri&#x3D;i; 引用注意事项 123456789&#x2F;&#x2F; 引用必须时对一个对象的引用int &amp;ri&#x3D;10; &#x2F;&#x2F;错误&#x2F;&#x2F; 引用必须为同一种类型double pi&#x3D;3.14;int &amp;rpi&#x3D;pi; &#x2F;&#x2F;错误&#x2F;&#x2F; 引用必须要有初始化int &amp;ra; &#x2F;&#x2F;错误，为初始">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-28T09:23:25.000Z">
+<meta property="article:modified_time" content="2025-02-14T11:20:25.588Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C++ Primer学习笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Geez`s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ Primer学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-28 17:23" pubdate>
+          2023年9月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ Primer学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第二章-变量和基本类型"><a href="#第二章-变量和基本类型" class="headerlink" title="第二章 变量和基本类型"></a>第二章 变量和基本类型</h1><h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>引用也即给对象起别名</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;<br><span class="hljs-comment">// ri为i的引用</span><br><span class="hljs-type">int</span> &amp;ri=i;<br></code></pre></td></tr></table></figure>
+<p>引用注意事项</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 引用必须时对一个对象的引用</span><br><span class="hljs-type">int</span> &amp;ri=<span class="hljs-number">10</span>; <span class="hljs-comment">//错误</span><br><br><span class="hljs-comment">// 引用必须为同一种类型</span><br><span class="hljs-type">double</span> pi=<span class="hljs-number">3.14</span>;<br><span class="hljs-type">int</span> &amp;rpi=pi; <span class="hljs-comment">//错误</span><br><br><span class="hljs-comment">// 引用必须要有初始化</span><br><span class="hljs-type">int</span> &amp;ra; <span class="hljs-comment">//错误，为初始化</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><h4 id="类型指针"><a href="#类型指针" class="headerlink" title="类型指针"></a>类型指针</h4><p>指针本身是一个对象，它的值为一个对象的地址，它可以赋值与拷贝。因为是一个对象因此与引用不同，它可以不初始化，指针的定义为“类型 *变量名”,例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a=<span class="hljs-number">0</span>;<br><span class="hljs-comment">// 定义一个变量pa，其类型为int*也即整形指针，其值为a的地址</span><br><span class="hljs-type">int</span> *pa=&amp;a; <span class="hljs-comment">//&amp;a表示取出a的地址</span><br></code></pre></td></tr></table></figure>
+<p>由上可值pa类型为int* 但一般编程习惯是把*号紧邻变量名左边，因为这样容易产生误解，例如在定义多个变量时，事实上int*仅作用于一个变量，而非全部，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span>* a,b,c;<br><span class="hljs-type">int</span> *a,b,c;<br></code></pre></td></tr></table></figure>
+<p>上面程序第一条语句很多人也许会误以为a，b，c均为int指针，实则不然仅a为int指针；b，c为int类型而非指针。因此通常做法是把*号紧挨于变量左边就像第二条语句一样，就不容易产生误解了。</p>
+<p>利用指针访问对象要使用到 “*”解引用操作符</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> ival=<span class="hljs-number">2</span>;<br><span class="hljs-type">int</span> *pival=&amp;ival;<br>cout&lt;&lt;*pival&lt;&lt;endl;<br></code></pre></td></tr></table></figure>
+
+<h4 id="void-指针"><a href="#void-指针" class="headerlink" title="void* 指针"></a>void* 指针</h4><p>void* 指针是一种特殊类型的指针，可以存放任意对象的地址。以下程序是正确的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">double</span> obj1=<span class="hljs-number">3.14</span>;<br><span class="hljs-type">void</span>* p=&amp;obj1;<br><span class="hljs-type">int</span> obj2=<span class="hljs-number">2</span>;<br>p=&amp;obj2;<br></code></pre></td></tr></table></figure>
+<p>因为不知道其具体类型是什么，因此不能直接使用解引用符号访问该指针指向的对象。</p>
+<h2 id="const限定符"><a href="#const限定符" class="headerlink" title="const限定符"></a>const限定符</h2><h2 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h2><h3 id="auto类型说明符"><a href="#auto类型说明符" class="headerlink" title="auto类型说明符"></a>auto类型说明符</h3><p>通常我们不可能清楚知道每一个表达式的值的类型，auto关键字用于让编译器自己推导表达式类型，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">auto</span> a=<span class="hljs-number">2</span>;<br><span class="hljs-keyword">auto</span> b=<span class="hljs-number">3.14</span>;<br></code></pre></td></tr></table></figure>
+<p>这是编译器根据2和3.14能推导出a的类型为int，b的类型为double。<br>auto也能在一条语句同时定义多个变量，但必须要有同一类型，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">auto</span> a=<span class="hljs-number">0</span>,b=<span class="hljs-number">3.14</span>; <span class="hljs-comment">//错误，0和3.14类型不同</span><br><span class="hljs-keyword">auto</span> c=<span class="hljs-number">0</span>,d=<span class="hljs-number">4</span>; <span class="hljs-comment">// 正确</span><br><span class="hljs-keyword">auto</span> e=<span class="hljs-number">3.24</span>,f=<span class="hljs-number">3.14</span>; <span class="hljs-comment">//正确</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="decltype类型指示符"><a href="#decltype类型指示符" class="headerlink" title="decltype类型指示符"></a>decltype类型指示符</h3><p>其作用是返回操作数的数据类型。在次过程中编译器会分析表达式并得到其类型，却不会计算表达式的值，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">decltype</span>(<span class="hljs-built_in">f</span>()) a=b;<br></code></pre></td></tr></table></figure>
+<p>编译器会分析并得到f()函数的返回值类型，但并不会调用f()函数。<br>表达式也可以是一个变量或者一个具体的值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ci=<span class="hljs-number">0</span>,&amp;cj=ci;<br><span class="hljs-keyword">decltype</span>(ci) x=<span class="hljs-number">0</span>;  <span class="hljs-comment">// x类型为const int</span><br><span class="hljs-keyword">decltype</span>(cj) y=x;  <span class="hljs-comment">// y是const int&amp;类型</span><br><span class="hljs-keyword">decltype</span>(cj) z; <span class="hljs-comment">// z为引用类型必须初始化</span><br></code></pre></td></tr></table></figure>
+<p>注意事项</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> i=<span class="hljs-number">42</span>,*P=&amp;i,&amp;r=i;<br><span class="hljs-keyword">decltype</span>(r) z; <span class="hljs-comment">//错误 z为引用类型必须初始化</span><br><span class="hljs-keyword">decltype</span>(r<span class="hljs-number">+0</span>) x; <span class="hljs-comment">//正确，x为int类型</span><br><span class="hljs-keyword">decltype</span>(*p) c; <span class="hljs-comment">//错误，c为引用类型必须初始化</span><br><span class="hljs-keyword">decltype</span>((i)) n; <span class="hljs-comment">//错误，n为引用类型必须初始化</span><br><span class="hljs-keyword">decltype</span>(i) m; <span class="hljs-comment">// 正确，m为int类型</span><br></code></pre></td></tr></table></figure>
+<p>上述代码中r为引用类型这是显然的，而r+0很明显是一个具体的int类型的值因此是int类型。<br>值得注意的是，如果表达式为解引用操作，则decltype得到的是引用类型。如上decltype(*p)得到的是引用类型int&amp;，而非int。之所以会这样是因为解引用我们得到的是实实在在的对象，而非数值，我们对解引用后的p进行操作会修改i的值。再者就是变量名加括号和不加括号有时候会得到两种不同类型，如上。</p>
+<h1 id="第三章-字符串，向量和数组"><a href="#第三章-字符串，向量和数组" class="headerlink" title="第三章 字符串，向量和数组"></a>第三章 字符串，向量和数组</h1><h2 id="标准库类型vector"><a href="#标准库类型vector" class="headerlink" title="标准库类型vector"></a>标准库类型vector</h2><p>vector表示对象的集合，里面存放的对象的类型相同，所以vector也常常被称作“容器”。<br>vector是C++中的一个类模板而非类，对于类模板来说只有提供了其他额外信息才能实例化为一个具体的类，以vector为例，vector本身不是类，但在其后面加上一对尖括号里面存放某个类型就成了一个类,比如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;<span class="hljs-type">int</span>&gt; ivec;  <span class="hljs-comment">//ivec保存int类型对象</span><br>vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; c; <span class="hljs-comment">// c保存vector&lt;int&gt;类型</span><br></code></pre></td></tr></table></figure>
+<p>值得注意的是vector虽然能够容纳大部分对象作为其元素，但因为引用不是对象，所以不存在包含引用的vector</p>
+<h2 id="迭代器介绍"><a href="#迭代器介绍" class="headerlink" title="迭代器介绍"></a>迭代器介绍</h2><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h1 id="第四章-表达式"><a href="#第四章-表达式" class="headerlink" title="第四章 表达式"></a>第四章 表达式</h1><h1 id="第五章-语句"><a href="#第五章-语句" class="headerlink" title="第五章 语句"></a>第五章 语句</h1><h1 id="第六章-函数"><a href="#第六章-函数" class="headerlink" title="第六章 函数"></a>第六章 函数</h1><h2 id="函数基础"><a href="#函数基础" class="headerlink" title="函数基础"></a>函数基础</h2><h3 id="局部对象"><a href="#局部对象" class="headerlink" title="局部对象"></a>局部对象</h3><h4 id="局部静态对象"><a href="#局部静态对象" class="headerlink" title="局部静态对象"></a>局部静态对象</h4><p>有些时候需要令局部变量的生命周期贯穿函数调用及之后的时间，可以将局部变量定义位static类型获得这一对象，成称为局部静态对象。局部静态对象仅在第一次执行时进行初始化，直到程序结束后才被销毁。期间除第一次初始化外，就算多次执行函数也不会产生影响，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">count_call</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">static</span> <span class="hljs-type">int</span> ctr=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">return</span> ++ctr;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;++i)&#123;<br>		<span class="hljs-built_in">count_call</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>以上代码可以计算函数调用次数，在第一次调用函数时对静态对象ctr进行初始化，之后ctr便一直存在函数count_call的作用域中，期间第二次，第三次…后的”static int ctr&#x3D;0;”这条语句都不会对程序产生影响，因为静态对象只初始化一次，但“++ctr”不是初始化语句且ctr会一直在作用域中所以仍然有效。知道程序结束才会将ctr对象销毁。</p>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><h2 id="特殊通途语言特性"><a href="#特殊通途语言特性" class="headerlink" title="特殊通途语言特性"></a>特殊通途语言特性</h2><h3 id="内联函数和constexpr函数"><a href="#内联函数和constexpr函数" class="headerlink" title="内联函数和constexpr函数"></a>内联函数和constexpr函数</h3><p>内联函数一般比较适用于较小的函数，定义内联函数可以避免函数调用的开销，从而提高运行效率，因为内联函数通常是在其每个调用点内联的展开，有点类似于宏，比如以下代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> a&gt;b?a:b;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cout&lt;&lt;<span class="hljs-built_in">test</span>(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>“cout&lt;&lt;test(3,4)&lt;&lt;endl;”这条语句在编译过程中因为test为内联函数所以会在其调用点内联展开为以下形式<br>“cout&lt;&lt;3&gt;4?3:4&lt;&lt;endl”</p>
+<p>constexpr函数指用于常量表达式的函数，其定义方法与普通函数类似，不过要遵循几条约定：函数返回值类型和形参类型都必须为字面值类型，而且函数体中必须有且仅有一条return语句。</p>
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针指向函数而非对象，和其他指针一样，函数指针指向某种特定的函数类型，函数类型由它的返回值和形参类型共同决定而与函数名无关。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//比较两个数大小</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> a&gt;b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>此函数类型为”bool compare(int,int)”，若想定义一个指向该函数的指针，用指针替换函数名即可，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">bool</span> (*pf)(<span class="hljs-type">int</span>,<span class="hljs-type">int</span>); <span class="hljs-comment">//未初始化</span><br></code></pre></td></tr></table></figure>
+<p>关于函数指针的复制和初始化，当使用函数名作为值时，该函数会自动转换为指针，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">pf=compare;<br>pf=&amp;compare;<br></code></pre></td></tr></table></figure>
+<p>在compare为一个函数名时以上两条语句是等价的‘&amp;’可写可不写</p>
+<h3 id="函数指针形参"><a href="#函数指针形参" class="headerlink" title="函数指针形参"></a>函数指针形参</h3><h1 id="第七章-类"><a href="#第七章-类" class="headerlink" title="第七章 类"></a>第七章 类</h1><h2 id="访问控制与封装"><a href="#访问控制与封装" class="headerlink" title="访问控制与封装"></a>访问控制与封装</h2><h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><h4 id="将非成员函数作为友元"><a href="#将非成员函数作为友元" class="headerlink" title="将非成员函数作为友元"></a>将非成员函数作为友元</h4><p>类可以允许其他类或者函数访问其私有成员，方法是令其他类或者函数定义为它的友元(friend)，把函数作为友元的方法是增加一条以friend关键字开头的函数声明即可，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span>&#123;<br><span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-type">const</span> test&amp;,<span class="hljs-type">const</span> test&amp;)</span></span>;<br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-type">int</span> a;<br>	<span class="hljs-type">int</span> b;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-type">const</span> test&amp;,<span class="hljs-type">const</span> test&amp;)</span></span>&#123;<br>	....函数体...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>以上代码中如果不加‘friend int compare(const test&amp;,const test&amp;);‘这条语句，显然compare函数不属于test类，则它无法访问test私有成员，如果加上的话那么compare函数就成了test的友元，就能够访问其私有成员了。</p>
+<h4 id="将其他类作为友元"><a href="#将其他类作为友元" class="headerlink" title="将其他类作为友元"></a>将其他类作为友元</h4><p>将other类作为test类的友元，other类将具有访问test私有成员的能力</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span>&#123;<br><span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">other</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="将其他类中某个成员函数作为友元"><a href="#将其他类中某个成员函数作为友元" class="headerlink" title="将其他类中某个成员函数作为友元"></a>将其他类中某个成员函数作为友元</h4><p>将other类中某个成员函数作为友元，该函数将具有访问test私有成员的能力，但该类的其他函数不行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span>&#123;<br><span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">test::compare</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="类的其他特性"><a href="#类的其他特性" class="headerlink" title="类的其他特性"></a>类的其他特性</h2><h2 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h2><h2 id="构造函数再探"><a href="#构造函数再探" class="headerlink" title="构造函数再探"></a>构造函数再探</h2><h3 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h3><p>委托构造函数是指使用该类其他构造函数执行自己初始化过程的函数，在委托函数内成员初始列表仅有一个入口就是类名本身。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sale_data</span>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 非委托构造函数</span><br>	<span class="hljs-built_in">Sale_data</span>(<span class="hljs-type">char</span> c,<span class="hljs-type">int</span> b,<span class="hljs-type">double</span> b):<span class="hljs-built_in">bookNo</span>(b),<span class="hljs-built_in">a</span>(c),<span class="hljs-built_in">price</span>(b)&#123;&#125;<br>	<span class="hljs-comment">// 委托构造函数使用非委托构造函数初始化</span><br>	<span class="hljs-built_in">Sale_data</span>():<span class="hljs-built_in">Sale_data</span>(<span class="hljs-string">&#x27;&#x27;,0,0.0)&#123;&#125;</span><br><span class="hljs-string">	Sale_data(char c):Sale_data(c,0,0.0)&#123;&#125;</span><br><span class="hljs-string">&#125;;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="第八章-IO库"><a href="#第八章-IO库" class="headerlink" title="第八章 IO库"></a>第八章 IO库</h1><h1 id="第九章-顺序容器"><a href="#第九章-顺序容器" class="headerlink" title="第九章 顺序容器"></a>第九章 顺序容器</h1><h1 id="第十章-泛型算法"><a href="#第十章-泛型算法" class="headerlink" title="第十章 泛型算法"></a>第十章 泛型算法</h1><h1 id="第十二章-动态内存"><a href="#第十二章-动态内存" class="headerlink" title="第十二章 动态内存"></a>第十二章 动态内存</h1><h2 id="动态内存与智能指针"><a href="#动态内存与智能指针" class="headerlink" title="动态内存与智能指针"></a>动态内存与智能指针</h2><p>C+动态内存管理可以通过new和delete来完成，不过这种方式极其难以管理因此C11引入了智能指针shared_ptr,unique_ptr,weak_ptr。三种指针均在memory头文件中。</p>
+<h3 id="shared-ptr类"><a href="#shared-ptr类" class="headerlink" title="shared_ptr类"></a>shared_ptr类</h3><p>shared_ptr类通vector一样也是模板，因为我们也需要知道一个指针到底指向的是什么类型，</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">shared_ptr&lt;string&gt; p1;<br>shared_ptr&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; p2;<br></code></pre></td></tr></table></figure>
+
+<p>如上所示定义了一个指向string和指向vector&lt;int&gt;类型学的指针</p>
+<h4 id="make-shared函数"><a href="#make-shared函数" class="headerlink" title="make_shared函数"></a>make_shared函数</h4><h1 id="第十三章-拷贝控制"><a href="#第十三章-拷贝控制" class="headerlink" title="第十三章 拷贝控制"></a>第十三章 拷贝控制</h1><h2 id="拷贝，赋值与销毁"><a href="#拷贝，赋值与销毁" class="headerlink" title="拷贝，赋值与销毁"></a>拷贝，赋值与销毁</h2><h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p>如果一个构造函数的第一个参数是自身类类型的引用，且任何额外参数都有默认值，则该该构造函数为拷贝构造函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">test</span>(<span class="hljs-type">const</span> test&amp;);<br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-type">int</span> no;<br>	string name;<br>&#125;;<br><br>test::<span class="hljs-built_in">test</span>(<span class="hljs-type">const</span> test&amp; orig):<span class="hljs-built_in">no</span>(orig.no),<span class="hljs-built_in">name</span>(orig.name)&#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="直接初始化和拷贝初始化"><a href="#直接初始化和拷贝初始化" class="headerlink" title="直接初始化和拷贝初始化"></a>直接初始化和拷贝初始化</h3><p>直接初始化是指要求编译器使用普通的函数匹配来选择与我们提供的参数最匹配的构造函数。而拷贝初始化是将右侧运算对象拷贝到正在创建的对象中，需要的话还要进行类型转换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">dots</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;.&#x27;</span>)</span></span>; <span class="hljs-comment">//直接初始化</span><br><span class="hljs-function">string <span class="hljs-title">s</span><span class="hljs-params">(dots)</span></span>;  <span class="hljs-comment">//直接初始化</span><br>string s2=dots;  <span class="hljs-comment">//拷贝初始化</span><br>string s3=<span class="hljs-string">&quot;fdafa&quot;</span> <span class="hljs-comment">//拷贝初始化</span><br></code></pre></td></tr></table></figure>
+<h3 id="拷贝初始化发生情况"><a href="#拷贝初始化发生情况" class="headerlink" title="拷贝初始化发生情况"></a>拷贝初始化发生情况</h3><ol>
+<li>使用‘&#x3D;‘复制时</li>
+<li>将一个对象作为实参传给非引用类型的形参 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>&#123;<br><br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a=<span class="hljs-number">9</span>;<br>	<span class="hljs-built_in">test</span>(a); <span class="hljs-comment">//这里就发生了拷贝初始化</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>从一个返回值类型为非引用类型返回一个对象 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a=<span class="hljs-number">9</span>;<br>	<span class="hljs-keyword">return</span> a; <span class="hljs-comment">//发生拷贝初始化</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>使用花括号初始化数组的元素或聚合类成员</li>
+</ol>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>当一个对象被销毁时会自动调用析构函数，析构函数由 ~类名 定义，如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br><span class="hljs-keyword">public</span>:<br>	~<span class="hljs-built_in">Test</span>()&#123;&#125; <span class="hljs-comment">// 析构函数</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="阻止拷贝"><a href="#阻止拷贝" class="headerlink" title="阻止拷贝"></a>阻止拷贝</h3><p>通常来说大多数情况不会用到阻止拷贝，但也有特例如在iostream中就应该阻止拷贝以避免多个对象读取相同的io.<br>在新标准下通常可以将拷贝函数和拷贝赋值函数定义为删除的函数以阻止拷贝赋值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NoCopy</span>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">NoCopy</span>(<span class="hljs-type">const</span> NoCopy&amp;) = <span class="hljs-keyword">delete</span>;  <span class="hljs-comment">//阻止拷贝</span><br>	NoCopy &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> NoCopy&amp;) = <span class="hljs-keyword">delete</span>; <span class="hljs-comment">//阻止赋值</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在新标准前一般是将拷贝函数定义为private以阻止拷贝</p>
+<h1 id="第十四章-重载运算符与类型转换"><a href="#第十四章-重载运算符与类型转换" class="headerlink" title="第十四章 重载运算符与类型转换"></a>第十四章 重载运算符与类型转换</h1><h1 id="第十五章-面向对象程序设计"><a href="#第十五章-面向对象程序设计" class="headerlink" title="第十五章 面向对象程序设计"></a>第十五章 面向对象程序设计</h1><h2 id="OOP概述"><a href="#OOP概述" class="headerlink" title="OOP概述"></a>OOP概述</h2><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>通过<em>继承</em>联系在一起的类构成一种层次关系。通常在层次的根部有一个基类，其他所有类都直接或间接从基类继承而来，这些类称为派生类。<br>在C++中对于某些函数基类希望派生类都实现自己适合的版本，此时就将基类这些函数定义为<em>虚函数</em>。也就是说如果子类必须对父类的虚函数进行重写。这也是虚函数与普通函数的区别，普通函数若子类不重写则会使用父类的版本，而虚函数必须重写。(类似与java中@override注释)</p>
+<h3 id="动态绑定-多态"><a href="#动态绑定-多态" class="headerlink" title="动态绑定(多态)"></a>动态绑定(多态)</h3><p>通过动态绑定我们可以使一段代码既可以处理父类对象也可以处理子类对象，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Fruit</span>&#123;<br>	<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Apple</span>:Fruit&#123;<br><br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Oringe</span>:Fruit&#123;<br><br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-type">const</span> Fruit &amp;a)</span></span>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在上段代码中Apple和Oringe都继承自Fruit,所以在test中以Fruit对象为参数的函数Fruit，Apple,Oringe对象均可作为其参数。</p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>前面已经学习了两种访问控制关键字：public，private。其中public可以允许可他对象访问自己成员，而private则不允许其他对象访问自己成员包括子类，那么如果我们希望子类能够访问其成员而其他类对象不能访问该如何做，这是就要用到protected关键字了。</p>
+<h2 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ Primer学习笔记</div>
+      <div>http://example.com/2023/09/28/C++ Primer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/14/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" title="汇编语言">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">汇编语言</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/28/C++%E5%85%AB%E8%82%A1%E6%96%87/" title="C++八股文">
+                        <span class="hidden-mobile">C++八股文</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
