@@ -19,21 +19,28 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一章 TCP&#x2F;IP简介第三章 套接字编程简介htons函数h代表host，n带变network，s代表short 1uint16_t htons(uint16_t hostshort);  网络字节序是大端字节序（Big Endian）的一种形式。 而主机字节序是按照本地机器的硬件规定的字节顺序进行排列。有大端也有小端 htons函数用于将主机字节序的16位整数转换为网络字节序（大端字">
+    <meta name="description" content="最近在kitty上使用tmux时发现neovim的主题配色发生改变，但在关闭tmux后主题配色又正常了。  左边是启动tmux后启动的nvim，右边则是没有启动tmux的nvim，两者的配色有明显的变化。 解决方案  统一环境变量 确保环境变量TERM与tmux配置default-terminal保持一致。 1echo $TERM  # 我的输出是 xterm-256color  在tmux.co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unix网络编程-1">
-<meta property="og:url" content="http://example.com/2023/09/28/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%B71%EF%BC%89/index.html">
+<meta property="og:title" content="关于neovim主题因tmux而改变问题">
+<meta property="og:url" content="http://example.com/2025/02/23/%E5%85%B3%E4%BA%8Eneovim%E4%B8%BB%E9%A2%98%E5%9B%A0tmux%E8%80%8C%E6%94%B9%E5%8F%98%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第一章 TCP&#x2F;IP简介第三章 套接字编程简介htons函数h代表host，n带变network，s代表short 1uint16_t htons(uint16_t hostshort);  网络字节序是大端字节序（Big Endian）的一种形式。 而主机字节序是按照本地机器的硬件规定的字节顺序进行排列。有大端也有小端 htons函数用于将主机字节序的16位整数转换为网络字节序（大端字">
+<meta property="og:description" content="最近在kitty上使用tmux时发现neovim的主题配色发生改变，但在关闭tmux后主题配色又正常了。  左边是启动tmux后启动的nvim，右边则是没有启动tmux的nvim，两者的配色有明显的变化。 解决方案  统一环境变量 确保环境变量TERM与tmux配置default-terminal保持一致。 1echo $TERM  # 我的输出是 xterm-256color  在tmux.co">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-28T09:23:25.000Z">
-<meta property="article:modified_time" content="2025-02-14T13:11:59.672Z">
+<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20250223225610673.png">
+<meta property="article:published_time" content="2025-02-23T14:48:23.000Z">
+<meta property="article:modified_time" content="2025-02-23T15:08:38.094Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="tmux">
+<meta property="article:tag" content="neovim">
+<meta property="article:tag" content="vim">
+<meta property="article:tag" content="nvim">
+<meta property="article:tag" content="theme">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20250223225610673.png">
   
   
   
-  <title>Unix网络编程-1 - Hexo</title>
+  <title>关于neovim主题因tmux而改变问题 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Unix网络编程-1"></span>
+            <span id="subtitle" data-typed-text="关于neovim主题因tmux而改变问题"></span>
           
         </div>
 
@@ -210,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-28 17:23" pubdate>
-          2023年9月28日 下午
+        <time datetime="2025-02-23 22:48" pubdate>
+          2025年2月23日 晚上
         </time>
       </span>
     
@@ -222,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          250 字
         
       </span>
     
@@ -233,7 +240,7 @@
         
         
         
-          11 分钟
+          3 分钟
         
       </span>
     
@@ -270,60 +277,36 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Unix网络编程-1</h1>
+            <h1 id="seo-header">关于neovim主题因tmux而改变问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第一章-TCP-IP简介"><a href="#第一章-TCP-IP简介" class="headerlink" title="第一章 TCP&#x2F;IP简介"></a>第一章 TCP&#x2F;IP简介</h1><h1 id="第三章-套接字编程简介"><a href="#第三章-套接字编程简介" class="headerlink" title="第三章 套接字编程简介"></a>第三章 套接字编程简介</h1><h2 id="htons函数"><a href="#htons函数" class="headerlink" title="htons函数"></a>htons函数</h2><p>h代表host，n带变network，s代表short</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">uint16_t</span> <span class="hljs-title function_">htons</span><span class="hljs-params">(<span class="hljs-type">uint16_t</span> hostshort)</span>;<br></code></pre></td></tr></table></figure>
-
-<p>网络字节序是大端字节序（Big Endian）的一种形式。</p>
-<p>而主机字节序是按照本地机器的硬件规定的字节顺序进行排列。有大端也有小端</p>
-<p>htons函数用于将主机字节序的16位整数转换为网络字节序（大端字节序）。</p>
-<p>通常来说若主机字节序也是大端字节序则不必进行转换，使用htons可以提高系统可移植性</p>
-<p>其他相关函数还有：</p>
-<ul>
-<li>htonl</li>
-<li>ntohs</li>
-<li>ntohl</li>
-</ul>
-<h1 id="第四章-基本套接字编程"><a href="#第四章-基本套接字编程" class="headerlink" title="第四章 基本套接字编程"></a>第四章 基本套接字编程</h1><h2 id="端口号分类"><a href="#端口号分类" class="headerlink" title="端口号分类"></a>端口号分类</h2><p>端口号是一个 16 位的数字，因此其范围从 0 到 65535。根据用途和分配方式，可以将端口号分为以下几类：</p>
-<ul>
-<li><strong>知名端口（Well-known Ports）</strong>：0 - 1023</li>
-<li><strong>注册端口（Registered Ports）</strong>：1024 - 49151</li>
-<li><strong>动态或私有端口（Dynamic or Private Ports）</strong>：49152 - 65535</li>
-</ul>
-<p>知名端口好0-1023通常由内核控制，也就是说但你需要使用bind函数绑定0-1023中的端口，你需要有root用户权限。</p>
-<h1 id="第六章-IO复用技术"><a href="#第六章-IO复用技术" class="headerlink" title="第六章 IO复用技术"></a>第六章 IO复用技术</h1><h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><h2 id="select函数"><a href="#select函数" class="headerlink" title="select函数"></a>select函数</h2><h2 id="poll函数"><a href="#poll函数" class="headerlink" title="poll函数"></a>poll函数</h2><h2 id="epoll函数"><a href="#epoll函数" class="headerlink" title="epoll函数"></a>epoll函数</h2><p>关于epoll函数为什么要在使用</p>
-<h1 id="第七章-套接字选项"><a href="#第七章-套接字选项" class="headerlink" title="第七章 套接字选项"></a>第七章 套接字选项</h1><h2 id="setsockopt和getscokopt"><a href="#setsockopt和getscokopt" class="headerlink" title="setsockopt和getscokopt"></a>setsockopt和getscokopt</h2><p>用于设置和获取套接字选项</p>
-<h2 id="fcntl函数"><a href="#fcntl函数" class="headerlink" title="fcntl函数"></a>fcntl函数</h2><p>file control，fcntl函数可以执行各种文件描述符操作，因为socket本身也就是一个文件描述符，所以fcntl也能够为socket设置部分选项，尽管没有setsocket那么全</p>
-<h1 id="第八章-基本UDP套接字"><a href="#第八章-基本UDP套接字" class="headerlink" title="第八章 基本UDP套接字"></a>第八章 基本UDP套接字</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>UDP与TCP不同提供的是不可靠的传输，故使用UDP无须建立连接，客户端只需通过sendto直接发送数据即可，服务器通过recvfrom获取sendto发送的数据。</p>
-<h2 id="sendto和recvfrom函数"><a href="#sendto和recvfrom函数" class="headerlink" title="sendto和recvfrom函数"></a>sendto和recvfrom函数</h2><h1 id="第九章-sctp套接字编程"><a href="#第九章-sctp套接字编程" class="headerlink" title="第九章 sctp套接字编程"></a>第九章 sctp套接字编程</h1><p>暂时不学</p>
-<h1 id="第十章-sctp客户端-服务器实例"><a href="#第十章-sctp客户端-服务器实例" class="headerlink" title="第十章 sctp客户端&#x2F;服务器实例"></a>第十章 sctp客户端&#x2F;服务器实例</h1><p>暂时不学</p>
-<h1 id="第十一章-名字与地址转换"><a href="#第十一章-名字与地址转换" class="headerlink" title="第十一章 名字与地址转换"></a>第十一章 名字与地址转换</h1><h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p>也就是DNS，即域名到ip地址的映射，linux中DNS服务器通常存放在<code>/etc/resolv.conf</code>中。</p>
-<p><code>/etc/hosts</code>用于静态主机映射，常见有将localhost映射为127.0.0.1。</p>
-<h2 id="getservbyname和getservbyport函数"><a href="#getservbyname和getservbyport函数" class="headerlink" title="getservbyname和getservbyport函数"></a>getservbyname和getservbyport函数</h2><p>与域名映射到ip类似，为了方便记住某个服务，操作系统也提供了名字到端口的映射存放在<code>/etc/services</code>中</p>
-<p>getservbyname函数通过名字查找某个服务，getservbyport则是通过某个端口查找服务</p>
-<h1 id="第十三章-守护进程和inetd超级服务器"><a href="#第十三章-守护进程和inetd超级服务器" class="headerlink" title="第十三章 守护进程和inetd超级服务器"></a>第十三章 守护进程和inetd超级服务器</h1><h2 id="创建守护程序"><a href="#创建守护程序" class="headerlink" title="创建守护程序"></a>创建守护程序</h2><p>守护进程是一种在后台运行的特殊进程，通常用于执行长期运行的服务任务，如监听网络请求或管理系统日志。</p>
-<p>以下是将一个C程序变成守护进程通常需要执行的步骤：</p>
+                <p>最近在kitty上使用tmux时发现neovim的主题配色发生改变，但在关闭tmux后主题配色又正常了。</p>
+<p><img src="/home/ce/.config/Typora/typora-user-images/image-20250223225610673.png" srcset="/img/loading.gif" lazyload alt="image-20250223225610673"></p>
+<p>左边是启动tmux后启动的nvim，右边则是没有启动tmux的nvim，两者的配色有明显的变化。</p>
+<p><strong>解决方案</strong></p>
 <ol>
-<li><strong>创建子进程</strong>： 使用 <code>fork()</code> 创建一个新的子进程。通常，父进程会退出，让子进程继续作为守护进程运行。</li>
-<li><strong>在子进程中创建新的会话</strong>： 使用 <code>setsid()</code> 创建一个新的会话，并成为该会话的领头进程。这使得守护进程与终端脱离关联。</li>
-<li><strong>改变工作目录</strong>： 使用 <code>chdir(&quot;/&quot;)</code> 将当前工作目录改变到根目录。这是为了防止守护进程占用文件系统空间，导致文件系统无法卸载。</li>
-<li><strong>重设文件权限掩码</strong>： 设置文件权限掩码以防止文件和目录的权限继承。</li>
-<li><strong>关闭打开的文件描述符</strong>： 关闭所有非必要的文件描述符，或者将标准输入、输出和错误重定向到 <code>/dev/null</code>。</li>
-<li><strong>处理僵尸进程</strong>： 如果守护进程创建了子进程，需要适当地处理它们，以避免僵尸进程的产生。</li>
-</ol>
-<p>上述就是创建守护进程的一般过程，这里说下第五步的技巧，关闭所有文件描述符后，应为open函数打开文件所创建的文件描述符为第一个可用文件描述符，所以在我们关闭所有文件描述符后第一个可用的文件描述符自然就是0，这是连续调用3次open函数就分配了0，1，2三个文件描述符，这是标准输入，标准输出，标准错误就被重定向到了<code>/dev/null</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;MAXFD;++i)<br>    close(i);<br>open(<span class="hljs-string">&quot;/dev/null&quot;</span>,O_RDONLY);<br>open(<span class="hljs-string">&quot;/dev/null&quot;</span>,O_RDWD);<br>open(<span class="hljs-string">&quot;/dev/null&quot;</span>,O_RDWD);<br></code></pre></td></tr></table></figure>
+<li><p>统一环境变量</p>
+<p>确保环境变量<code>TERM</code>与tmux配置<code>default-terminal</code>保持一致。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo $TERM  # 我的输出是 xterm-256color<br></code></pre></td></tr></table></figure>
 
-<h1 id="第十四章-高级IO函数"><a href="#第十四章-高级IO函数" class="headerlink" title="第十四章 高级IO函数"></a>第十四章 高级IO函数</h1><h2 id="recv和send函数"><a href="#recv和send函数" class="headerlink" title="recv和send函数"></a>recv和send函数</h2><h2 id="readv和writev函数"><a href="#readv和writev函数" class="headerlink" title="readv和writev函数"></a>readv和writev函数</h2><h2 id="recvmsg和sendmsg函数"><a href="#recvmsg和sendmsg函数" class="headerlink" title="recvmsg和sendmsg函数"></a>recvmsg和sendmsg函数</h2><h1 id="第十五章-UNIX域协议"><a href="#第十五章-UNIX域协议" class="headerlink" title="第十五章 UNIX域协议"></a>第十五章 UNIX域协议</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>Uix域协议并不是一个实际的协议族，而是在单个主机上执行客户&#x2F;服务器通信的一种方法，在单个主机上通信其实换句话说就是进程之间的通信。</p>
-<h2 id="描述符传递"><a href="#描述符传递" class="headerlink" title="描述符传递"></a>描述符传递</h2><p>我们知道子进程会继承父进程文件描述符，换句话说父进程将自己文件描述符传递给了子进程，那么在非父子进程中如何进行文件描述符的传递呢？</p>
-<p>两个进程传递文件描述符操作如下：</p>
-<ol>
-<li>创建一个字节流或数据报的Unix套接字</li>
+<p>在tmux.conf中配置<code>default-terminal</code>为你上面的输出（我这里是xterm-256color）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set -g default-terminal &quot;xterm-256color&quot;<br></code></pre></td></tr></table></figure>
+
+<p>关闭tmux再测试一遍，如果还不行则进行步骤2.</p>
+</li>
+<li><p>启用真彩色支持</p>
+<p>如果系统支持真彩色，那么在tmux和neovim中都启用真彩色</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo $COLORTERM   # truecolor<br></code></pre></td></tr></table></figure>
+
+<p>如果你上面输出是<code>truecolor</code>那么就在tmux.conf中启用真彩色支持。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set -as terminal-overrides &quot;,xterm-256color:Tc&quot;  # 启用真彩色<br></code></pre></td></tr></table></figure>
+
+<p>并在neovim配置文件中也启用。这里使用的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set termguicolors  # Vimscript写这一行<br>vim.opt.termguicolors = true # lua写这一行<br></code></pre></td></tr></table></figure></li>
 </ol>
+<p>最后应该就能解决这个问题了。</p>
 
                 
               </div>
@@ -333,6 +316,21 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/tmux/" class="print-no-link">#tmux</a>
+      
+        <a href="/tags/neovim/" class="print-no-link">#neovim</a>
+      
+        <a href="/tags/vim/" class="print-no-link">#vim</a>
+      
+        <a href="/tags/nvim/" class="print-no-link">#nvim</a>
+      
+        <a href="/tags/theme/" class="print-no-link">#theme</a>
+      
+    </div>
+  
 </div>
 
 
@@ -341,8 +339,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Unix网络编程-1</div>
-      <div>http://example.com/2023/09/28/unix网络编程（卷1）/</div>
+      <div>关于neovim主题因tmux而改变问题</div>
+      <div>http://example.com/2025/02/23/关于neovim主题因tmux而改变问题/</div>
     </div>
     <div class="license-meta">
       
@@ -354,7 +352,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月28日</div>
+          <div>2025年2月23日</div>
         </div>
       
       
@@ -386,18 +384,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/28/webserver%E9%A1%B9%E7%9B%AE%E8%A7%A3%E8%AF%BB/" title="WebServer项目">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">WebServer项目</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/28/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" title="搜索引擎使用技巧">
-                        <span class="hidden-mobile">搜索引擎使用技巧</span>
+                      <a href="/2025/02/14/emacslisp/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
