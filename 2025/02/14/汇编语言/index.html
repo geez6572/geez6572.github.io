@@ -8,33 +8,33 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/geez6572/img/fluid.png">
+  <link rel="icon" href="/geez6572/img/fluid.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="geez6572">
   <meta name="keywords" content="">
   
     <meta name="description" content="第一章	寄存器通用寄存器AX,BX,CX,DX用于存放一般数据,所以称为通用寄存器 由于8086cup的寄存器为16位,而8088cup寄存器为8位,为了能够与8088cpu兼容所以上述的通用寄存器又可以分为两个8位cpu AX可分为AH和AL,BX可分为BH和BL,CX可分为CH和CL,DX可分为DH和DL, 8086CPU给出物理地址方法8086CPU有20位地址总线,而8086CPU又是16">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编语言">
-<meta property="og:url" content="http://example.com/2025/02/14/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:url" content="https://github.com/geez6572/2025/02/14/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="第一章	寄存器通用寄存器AX,BX,CX,DX用于存放一般数据,所以称为通用寄存器 由于8086cup的寄存器为16位,而8088cup寄存器为8位,为了能够与8088cpu兼容所以上述的通用寄存器又可以分为两个8位cpu AX可分为AH和AL,BX可分为BH和BL,CX可分为CH和CL,DX可分为DH和DL, 8086CPU给出物理地址方法8086CPU有20位地址总线,而8086CPU又是16">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/image-20221021212453818.png">
-<meta property="og:image" content="http://example.com/img/image-20221022200545206.png">
-<meta property="og:image" content="http://example.com/img/image-20221022221729888.png">
-<meta property="og:image" content="http://example.com/img/image-20221022221749341.png">
+<meta property="og:image" content="https://github.com/geez6572/img/image-20221021212453818.png">
+<meta property="og:image" content="https://github.com/geez6572/img/image-20221022200545206.png">
+<meta property="og:image" content="https://github.com/geez6572/img/image-20221022221729888.png">
+<meta property="og:image" content="https://github.com/geez6572/img/image-20221022221749341.png">
 <meta property="article:published_time" content="2025-02-14T13:11:59.672Z">
 <meta property="article:modified_time" content="2025-02-14T13:11:59.672Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="geez6572">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/image-20221021212453818.png">
+<meta name="twitter:image" content="https://github.com/geez6572/img/image-20221021212453818.png">
   
   
   
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/geez6572/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/geez6572/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/geez6572/css/highlight-dark.css" />
   
 
 
@@ -76,15 +76,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"github.com","root":"/geez6572/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/geez6572/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/geez6572/js/utils.js" ></script>
+  <script  src="/geez6572/js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/geez6572/">
       <strong>Geez`s Blog</strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/geez6572/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/geez6572/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/geez6572/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/geez6572/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/geez6572/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/geez6572/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -362,7 +362,7 @@
 <h4 id="bx，si，di，bp寄存器"><a href="#bx，si，di，bp寄存器" class="headerlink" title="bx，si，di，bp寄存器"></a>bx，si，di，bp寄存器</h4><p>（1）在8086CPU中，只有这四个寄存器能够用在”[…]”中进行内存单元寻址</p>
 <p>（2）在[…]中，这四个寄存器可以单独出现，也可以四种组合出现：bx和si，bx和di，bp和si，bp和di。或以这几种方法加上常数出现。 <strong>切记只能以上面描述的这几种方式出现，其余的都是错的。</strong></p>
 <p>（3）只要在[…]中使用了bp寄存器，而指令中没有显示的给出段地址，段地址就在ss中，其余的都默认在ds中。</p>
-<h4 id="常用的寻址方式"><a href="#常用的寻址方式" class="headerlink" title="常用的寻址方式"></a>常用的寻址方式</h4><p><img src="/img/image-20221021212453818.png" srcset="/img/loading.gif" lazyload alt="image-20221021212453818"></p>
+<h4 id="常用的寻址方式"><a href="#常用的寻址方式" class="headerlink" title="常用的寻址方式"></a>常用的寻址方式</h4><p><img src="/geez6572/img/image-20221021212453818.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20221021212453818"></p>
 <h4 id="处理的数据长度"><a href="#处理的数据长度" class="headerlink" title="处理的数据长度"></a>处理的数据长度</h4><p>8086CPU指令可处理两种数据长度即  <strong>byte和word</strong>  。下面说明在哪些情况下进行的是字操作，哪些情况下进行的是字节操作</p>
 <p>（1）通过寄存器指明</p>
 <p>​		我们知道，寄存器大小为16位即一个字，而一般寄存器可以分为两个8位寄存器，所以当寄存器为16位时处理的是字操作，当寄存器为8位时处理的是字节操作。</p>
@@ -460,7 +460,7 @@
 <p>​	用来为CPU执行相关指令提供行为依据</p>
 <p>​	用来控制CPU的相关工作方式</p>
 <p>标志寄存器各位示意图</p>
-<p><img src="/img/image-20221022200545206.png" srcset="/img/loading.gif" lazyload alt="image-20221022200545206"></p>
+<p><img src="/geez6572/img/image-20221022200545206.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20221022200545206"></p>
 <p>其中1,3,5,12,13,14,15位在8086CPU中未使用，而其他为都具有特殊含义</p>
 <h3 id="常用标志寄存器"><a href="#常用标志寄存器" class="headerlink" title="常用标志寄存器"></a>常用标志寄存器</h3><h4 id="zf标志"><a href="#zf标志" class="headerlink" title="zf标志"></a>zf标志</h4><p>zf标志记录了相关指令执行后其结果是否为0，如果为0那么zf标志为1，否则为0</p>
 <h4 id="pf标志"><a href="#pf标志" class="headerlink" title="pf标志"></a>pf标志</h4><p>pf标志为奇偶标志位，它记录了相关命令执行后其结果的所有位中1的个数是否为偶数，如果1的个数为偶数则pf为1，否则为0</p>
@@ -545,8 +545,8 @@
 <td>na:表示not above</td>
 </tr>
 </tbody></table>
-<h3 id="标志寄存器在Debug中的表示"><a href="#标志寄存器在Debug中的表示" class="headerlink" title="标志寄存器在Debug中的表示"></a>标志寄存器在Debug中的表示</h3><p><img src="/img/image-20221022221729888.png" srcset="/img/loading.gif" lazyload alt="image-20221022221729888"></p>
-<p><img src="/img/image-20221022221749341.png" srcset="/img/loading.gif" lazyload alt="image-20221022221749341"></p>
+<h3 id="标志寄存器在Debug中的表示"><a href="#标志寄存器在Debug中的表示" class="headerlink" title="标志寄存器在Debug中的表示"></a>标志寄存器在Debug中的表示</h3><p><img src="/geez6572/img/image-20221022221729888.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20221022221729888"></p>
+<p><img src="/geez6572/img/image-20221022221749341.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20221022221749341"></p>
 <h2 id="第十一章内中断"><a href="#第十一章内中断" class="headerlink" title="第十一章	内中断"></a>第十一章	内中断</h2><h3 id="内中断产生"><a href="#内中断产生" class="headerlink" title="内中断产生"></a>内中断产生</h3><p>中断信息产生原因</p>
 <table>
 <thead>
@@ -634,13 +634,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>汇编语言</div>
-      <div>http://example.com/2025/02/14/汇编语言/</div>
+      <div>https://github.com/geez6572/2025/02/14/汇编语言/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>geez6572</div>
         </div>
       
       
@@ -678,7 +678,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/14/orgmode/" title="">
+                      <a href="/geez6572/2025/02/14/orgmode/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -688,7 +688,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/28/C++%20Primer/" title="C++ Primer学习笔记">
+                      <a href="/geez6572/2023/09/28/C++%20Primer/" title="C++ Primer学习笔记">
                         <span class="hidden-mobile">C++ Primer学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -817,8 +817,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/geez6572/js/events.js" ></script>
+<script  src="/geez6572/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -840,7 +840,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/geez6572/js/img-lazyload.js" ></script>
   
 
 
@@ -939,7 +939,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/geez6572/js/local-search.js" ></script>
 
 
 
@@ -947,7 +947,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/geez6572/js/boot.js" ></script>
 
 
   

@@ -8,35 +8,35 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/geez6572/img/fluid.png">
+  <link rel="icon" href="/geez6572/img/fluid.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="geez6572">
   <meta name="keywords" content="">
   
     <meta name="description" content="shell编程基础使用变量变量使用要通常需要加$才能使用。关于变量什么时候需要加$什么时候不需要，一般来说如果是使用变量这需要加$,如果是操作变量则不需要，这里只是说大部分情况下都是这样，也有小部分情况例外。 12value&#x3D;&quot;aa&quot;  &#x2F;&#x2F; 这里我们是令value等于“aa”，在这里是对变量赋值，属于操作变量，故value无需加$echo $value &#x2F;&#x2F; 这里我们是输出v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shell编程">
-<meta property="og:url" content="http://example.com/2023/09/28/Shell%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:url" content="https://github.com/geez6572/2023/09/28/Shell%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="shell编程基础使用变量变量使用要通常需要加$才能使用。关于变量什么时候需要加$什么时候不需要，一般来说如果是使用变量这需要加$,如果是操作变量则不需要，这里只是说大部分情况下都是这样，也有小部分情况例外。 12value&#x3D;&quot;aa&quot;  &#x2F;&#x2F; 这里我们是令value等于“aa”，在这里是对变量赋值，属于操作变量，故value无需加$echo $value &#x2F;&#x2F; 这里我们是输出v">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png">
-<meta property="og:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png">
+<meta property="og:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png">
 <meta property="article:published_time" content="2023-09-28T09:23:25.000Z">
 <meta property="article:modified_time" content="2025-02-14T13:11:59.672Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="geez6572">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
+<meta name="twitter:image" content="https://github.com/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png">
   
   
   
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/geez6572/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/geez6572/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/geez6572/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"github.com","root":"/geez6572/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/geez6572/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/geez6572/js/utils.js" ></script>
+  <script  src="/geez6572/js/color-schema.js" ></script>
   
 
 
@@ -103,7 +103,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/geez6572/">
       <strong>Geez`s Blog</strong>
     </a>
 
@@ -122,7 +122,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/geez6572/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/geez6572/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/geez6572/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/geez6572/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/geez6572/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -200,7 +200,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/geez6572/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -300,7 +300,7 @@
 
 <p>运行命令后会进入待输入的界面，只有当输入为mark是才会结束，并执行命令。</p>
 <h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="expr命令"><a href="#expr命令" class="headerlink" title="expr命令"></a>expr命令</h3><p>expr允许处理数学表达式，expr能识别的常见数学操作和少数字符串操作如下。</p>
-<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png" srcset="/img/loading.gif" lazyload alt="image-20240610212957630"></p>
+<p><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610212957630.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610212957630"></p>
 <p>使用方法是在expr命令后面接上上图中的操作符。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">expr 1 + 4   # 回输出5<br></code></pre></td></tr></table></figure>
 
@@ -313,7 +313,7 @@
 
 
 <h2 id="退出脚本"><a href="#退出脚本" class="headerlink" title="退出脚本"></a>退出脚本</h2><h3 id="查看退出码"><a href="#查看退出码" class="headerlink" title="查看退出码"></a>查看退出码</h3><p>shell中有一个专门的变量<code>$?</code>它保存的是上个命令的退出码。如果运行的是shell脚本那么上一个命令显然就是shell脚本最后执行的命令。以下是一些常见的退出码。</p>
-<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png" srcset="/img/loading.gif" lazyload alt="image-20240610215807838"></p>
+<p><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610215807838.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610215807838"></p>
 <h3 id="exit命令"><a href="#exit命令" class="headerlink" title="exit命令"></a>exit命令</h3><p>在shell中也可以使用exit命令显示退出脚本，exit允许指定一个退出码，这和C语言main中的return很相似，C语言main函数返回的是一个退出码，通常是0表示没有错误，这也与shell类似。</p>
 <h1 id="结构化命令"><a href="#结构化命令" class="headerlink" title="结构化命令"></a>结构化命令</h1><h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><p>shell也支持条件控制if，通常用法是:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then</span><br>if command<br>then<br>	commands<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then-else</span><br>if command<br>then<br>	commands1<br>else<br>	commands2<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">if-then-elif-then-else</span><br>if command1<br>then<br>	commands1<br>elif command2<br>then<br>	commands2<br>else<br>	commands3<br>fi<br></code></pre></td></tr></table></figure>
@@ -332,15 +332,15 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ condition ]; then<br>	command<br>fi<br></code></pre></td></tr></table></figure>
 
 <h3 id="数值比较"><a href="#数值比较" class="headerlink" title="数值比较"></a>数值比较</h3><p>使用test常见的数值比较由下图列出。由因为单词缩写构成，eq(equal：等于),ge(greater equal：大于等于)，gt(greater than：大于)，le(less equal：小于等于)，lt(less than：小于)，ne(not equal：不等于)</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png" srcset="/img/loading.gif" lazyload alt="image-20240610225902566"></h3><h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>使用test常见的数值比较如下</p>
-<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png" srcset="/img/loading.gif" lazyload alt="image-20240610230308890"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610225902566.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610225902566"></h3><h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>使用test常见的数值比较如下</p>
+<p><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610230308890.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610230308890"></p>
 <h3 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h3><p>使用test常见的文件比较如下</p>
-<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png" srcset="/img/loading.gif" lazyload alt="image-20240610230520423"></p>
+<p><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610230520423.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610230520423"></p>
 <h2 id="复合条件测试"><a href="#复合条件测试" class="headerlink" title="复合条件测试"></a>复合条件测试</h2><p>if允许使用复合条件测试，用法如下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[ contition1 ] &amp;&amp; [ condition2 ] # and条件<br>[ contition1 ] || [ condition2 ] # 或条件<br></code></pre></td></tr></table></figure>
 
 <h2 id="if-then高级特性"><a href="#if-then高级特性" class="headerlink" title="if-then高级特性"></a>if-then高级特性</h2><h3 id="使用双括号"><a href="#使用双括号" class="headerlink" title="使用双括号"></a>使用双括号</h3><p>双括号允许我们使用高级数学表达式，实际上就是其他编程语言常见的一些东西</p>
-<p><img src="/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png" srcset="/img/loading.gif" lazyload alt="image-20240610232434091"></p>
+<p><img src="/geez6572/home/ce/.config/Typora/typora-user-images/image-20240610232434091.png" srcset="/geez6572/img/loading.gif" lazyload alt="image-20240610232434091"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">val=10<br>if (( $val ** 2 &gt;90)) # 10的平方是否大于90<br></code></pre></td></tr></table></figure>
 
 <h3 id="双方括号"><a href="#双方括号" class="headerlink" title="双方括号"></a>双方括号</h3><p>针对字符串比较的高级特性，使用方法如下</p>
@@ -445,13 +445,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>shell编程</div>
-      <div>http://example.com/2023/09/28/Shell编程/</div>
+      <div>https://github.com/geez6572/2023/09/28/Shell编程/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>geez6572</div>
         </div>
       
       
@@ -489,7 +489,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/28/STL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="STL源码剖析">
+                      <a href="/geez6572/2023/09/28/STL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="STL源码剖析">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">STL源码剖析</span>
                         <span class="visible-mobile">上一篇</span>
@@ -499,7 +499,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/28/Unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" title="Unix编程">
+                      <a href="/geez6572/2023/09/28/Unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" title="Unix编程">
                         <span class="hidden-mobile">Unix编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -628,8 +628,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/geez6572/js/events.js" ></script>
+<script  src="/geez6572/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -651,7 +651,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/geez6572/js/img-lazyload.js" ></script>
   
 
 
@@ -750,7 +750,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/geez6572/js/local-search.js" ></script>
 
 
 
@@ -758,7 +758,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/geez6572/js/boot.js" ></script>
 
 
   
