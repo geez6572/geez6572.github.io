@@ -16,18 +16,18 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="geezer">
+  <meta name="author" content="geez6572">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文档结构">
+    <meta name="description" content="文档结构列表 无序列表 使用”*“号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了.示例: 列表1 列表2 列表3   使用”+”号或”-“号的列表与*号用法基本一致,唯一不同的是可以位于行首   有序列表有序列表使用”1.”或者”1)”开头示例: 第一 fsdaf fdsja   第二 第三   结束列表可以在列表下空两行,结束该列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="orgmode学习">
 <meta property="og:url" content="https://github.com/geez6572/2022/11/18/orgmode/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="文档结构">
+<meta property="og:description" content="文档结构列表 无序列表 使用”*“号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了.示例: 列表1 列表2 列表3   使用”+”号或”-“号的列表与*号用法基本一致,唯一不同的是可以位于行首   有序列表有序列表使用”1.”或者”1)”开头示例: 第一 fsdaf fdsja   第二 第三   结束列表可以在列表下空两行,结束该列">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-18T14:28:23.000Z">
-<meta property="article:modified_time" content="2025-02-23T15:25:57.513Z">
+<meta property="article:modified_time" content="2025-02-23T15:54:43.000Z">
 <meta property="article:author" content="geez6572">
 <meta property="article:tag" content="emacs">
 <meta property="article:tag" content="learn">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 字
+          2.1k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          1 分钟
+          18 分钟
         
       </span>
     
@@ -278,7 +278,269 @@
             
               <div class="markdown-body">
                 
-                <h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2>
+                <h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
+<li>无序列表<ul>
+<li>使用”*“号的列表由于org中*号可以有两种含义,即标题和列表.所以若要用*号表示列表的话,*号不能位于行首否则就成标题了.<br>示例:<ul>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
+</ul>
+</li>
+<li>使用”+”号或”-“号的列表与*号用法基本一致,唯一不同的是可以位于行首</li>
+</ul>
+</li>
+<li>有序列表有序列表使用”1.”或者”1)”开头示例:<ol>
+<li>第一<ol>
+<li>fsdaf</li>
+<li>fdsja</li>
+</ol>
+</li>
+<li>第二</li>
+<li>第三</li>
+</ol>
+</li>
+<li>结束列表可以在列表下空两行,结束该列表,或者将内容的缩进修改成小于或等于该列表也可以结束列表.</li>
+<li>常用操作与快捷键<ul>
+<li>&lt;tab&gt;<br>对列表进行收缩或展开</li>
+<li>M-RET<br>在该列表下方新建一个与该列表同级的列表.<br>注意:如果光标位于列表名称的中将的话,则会将该列表后的内容作为新列表.</li>
+<li>M-S-RET<br>在该列表下方新建一个与该列表同级并且带有复选框的列表.其他与M-RET功能相似.</li>
+<li>S-UP和S-DOWN</li>
+<li>M-UP和M-DOWN<br>移动列表,将列表上移或者下移.移动时会连其下的内容也会随之移动.</li>
+<li>M-LEFT和M-RIGHT<br>提升或者降低列表的级别.不会连同子列表一起移动.</li>
+<li>M-S-LEFT和M-S-RIGHT<br>提升或者降低列表的级别.会连同子列表一起移动</li>
+<li>C-c C-c<br>与复选框相关的操作</li>
+<li>C-c -<br>修改与当前列表同级的表示方式,使它们的表示方式在”-,+,*,1.,1)”中循环切换.如果有选中区域的话则只对该区域内的列表有效.</li>
+<li>C-c *<br>将当前列表修改为标题,使其下与其同级别的列表成为它的子项</li>
+<li>C-c C-*<br>将当前列表级别一致的列表修改为缩进一致的标题.</li>
+<li>S-LEFT和S-RIGHT<br>修改列表与当前列表同级别的表示方式,在”-,+,*,1.,1)”切换.<br>注意:使用此操作是需要将光标移动到表示列表的符号上.</li>
+<li>C-c ^<br>对列表进行排序,可以按数字,字母,时间或者自定义函数进行排序.</li>
+</ul>
+</li>
+</ul>
+<h3 id="drawer"><a href="#drawer" class="headerlink" title="drawer"></a>drawer</h3><ul>
+<li><p>简介<br>drawer里可以保存一些与内容相关的东西,而你又不希望显示他们,就可以使用drawer,这个有点类似于标签的功能.</p>
+</li>
+<li><p>示例</p>
+<p>drawer的内容</p>
+</li>
+<li><p>常用操作与快捷键</p>
+<ul>
+<li>插入一个drawer<br>C-c C-x d</li>
+<li>插入一个带有时间的drawer<br>C-c C-z</li>
+</ul>
+</li>
+</ul>
+<h3 id="block"><a href="#block" class="headerlink" title="block"></a>block</h3><ul>
+<li>简介<br>block通常用于存放代码块和一些示例,以”#+BEGIN”开头,中间写入内容,以”#+END”结尾.</li>
+<li>示例<ul>
+<li><p>引用块</p>
+<blockquote>
+<p>引用内容</p>
+</blockquote>
+</li>
+<li><p>示例块</p>
+</li>
+<li><p>代码块</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>  &#123;<br>    <span class="hljs-type">int</span> a=;<br>    <span class="hljs-type">float</span> d=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><h3 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h3><ul>
+<li><p>表格表示如果某行是以’|’开头并且非空的花一般会被视为是一个表格,而以’|-‘开头则会被视为是一个表格的水平线.</p>
+</li>
+<li><p>示例:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>快捷键</p>
+<ul>
+<li>&lt;tab&gt;<ol>
+<li>输入”|”时如果是首字母,按tab会自动生成表格</li>
+<li>输入”|-“时如果是首字母,按tab会自动生成表格的水平线</li>
+<li>当光标在表格中输入tab会将往右移至下一个表格,如果表格已经是最后一个则会移动下一行第一个,如果下一行没有内容则会先在下一行新建一列.</li>
+</ol>
+</li>
+<li>S-&lt;tab&gt;<br>与&lt;tab&gt;相反,不过只包含移动操作.</li>
+<li>M-a<br>将光标定位的当前格子的最前面,如果光标所在格子没有内容者与&lt;tab&gt;功能相同</li>
+<li>M-a<br>将光标定位的当前格子的最后,如果光标所在格子没有内容者与S-&lt;tab&gt;功能相同</li>
+<li>RET<br>上下移动表格,如果表格已经是最后一行则会在下一行新建一行比表格后载移动下一行第一个</li>
+<li>C-c | (org-table-create-or-convert-from-region)<br>该命令输入后会提示用户输入表格的列x行,输入后会在该区域创建一个这样的表格.如果当前选中的区域是以逗号或者空格分开的,则该命令会按此自动生成表格.</li>
+<li>C-c C-c<br>是当前表格对齐</li>
+<li>org-table-blank-field<br>清空当前光标所处位置的格子中的内容</li>
+<li>M-LEFT (org-table-move-column-left)和M-RIGHT (org-table-move-column-right)<br>将当前列向指定方向移动</li>
+<li>M-S-LEFT (org-table-delete-column)<br>将当前列删除</li>
+<li>M-S-RIGHT (org-table-insert-column)<br>在当前列的前面新建一列</li>
+<li>M-UP (org-table-move-row-up)和M-DOWN (org-table-move-row-down)<br>将当前行向指定方向移动.</li>
+<li>M-S-UP (org-table-kill-row)<br>将当前行删除</li>
+<li>M-S-DOWN (org-table-insert-row)<br>在当前行上面新建一行.</li>
+<li>对单个格子移动<ul>
+<li>S-UP (org-table-move-cell-up)<br>将当前格子向上移动</li>
+<li>S-DOWN (org-table-move-cell-down)<br>将当前格子向下移动</li>
+<li>S-LEFT (org-table-move-cell-left)<br>将当前格子向左移动</li>
+<li>S-RIGHT (org-table-move-cell-right)<br>将当前格子向右移动</li>
+</ul>
+</li>
+<li>C-c - (org-table-insert-hline)<br>在当前行下面插入表格的水平线</li>
+<li>C-c RET (org-table-hline-and-move)<br>与C-c -功能一致,不过会移动至新建的水平线下一行表格</li>
+<li>C-c ^ (org-table-sort-lines)<br>对表格进行排序,排序的选择对象为光标所在的列.</li>
+<li>C-c ` (org-table-edit-field)<br>新开一个buffer对当前格子的内容进行编辑</li>
+<li>M-x org-table-transpose-table-at-point<br>将光标所在的表格进行行列互换</li>
+<li>C-c TAB (org-table-toggle-column-width)<br>收缩或者扩张</li>
+</ul>
+</li>
+</ul>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><h3 id="创建超链接"><a href="#创建超链接" class="headerlink" title="创建超链接"></a>创建超链接</h3><p>示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs org">[[链接][描述]]<br>或<br>[[链接]]<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="链接类型"><a href="#链接类型" class="headerlink" title="链接类型"></a>链接类型</h3><ul>
+<li><p>内部链接</p>
+<ul>
+<li><p>使用id<br>跳转到指定id位置</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp">[#custom_id]<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>使用章节跳转到指定章节</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lisp">[*section]<br>或<br>[section]<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>定义标记跳转到自定义的标记,使用’<span class="org-target" id="org-target--target"></span>‘自定义一个标记</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lisp">&lt;&lt;target&gt;&gt;<br>[target]<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>外部链接可以打开网址,文件等内容,一般都有自己的格式开头,比如网址以http或https开头,文件以file开头</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lisp">[[https://www.baidu.com]]<br>[[file:/home/cl/]]<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="todo-item"><a href="#todo-item" class="headerlink" title="todo-item"></a>todo-item</h2><h3 id="todo的使用"><a href="#todo的使用" class="headerlink" title="todo的使用"></a>todo的使用</h3><p>todo跟标题的使用方式几乎一样,在标题前加上TODO(大写)即可是标题成为一个TODO列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs orgmoe">*** TODO 开会<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="常用的快捷键和命令"><a href="#常用的快捷键和命令" class="headerlink" title="常用的快捷键和命令"></a>常用的快捷键和命令</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C-c C-t</td>
+<td>org-todo</td>
+<td>切换todo的状态</td>
+</tr>
+<tr>
+<td>S-right和S-left</td>
+<td></td>
+<td>循环切换todo状态</td>
+</tr>
+<tr>
+<td>C-c &#x2F; t</td>
+<td>org-show-todo-tree</td>
+<td>将文档中所以的todo项以稀疏树的形式展现出来</td>
+</tr>
+<tr>
+<td>C-c a t</td>
+<td>org-adenda t</td>
+<td>显示全局 TODO 列表。从所有的议程文件中收集 TODO 项到一个缓冲区中</td>
+</tr>
+<tr>
+<td>S-M-RET</td>
+<td>org-insert-todo-heading</td>
+<td>插入一个todo列表</td>
+</tr>
+</tbody></table>
+<h3 id="完成进度"><a href="#完成进度" class="headerlink" title="完成进度"></a>完成进度</h3><p>可以在标题或者todo列表后加上’<code>[/]</code>‘或者’<code>[%]</code>‘来其子项todo的完成进度或者复选框的选择比例,按’C-c C-c’可以刷新其状态</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><!--list-separator-->
+
+<ul>
+<li><span class="org-todo done DONE">DONE</span>  111</li>
+</ul>
+<!--list-separator-->
+
+<ul>
+<li><span class="org-todo todo TODO">TODO</span>  222</li>
+</ul>
+<!--list-separator-->
+
+<ul>
+<li><span class="org-todo todo TODO">TODO</span>  333</li>
+</ul>
+<!--list-separator-->
+
+<ul>
+<li><span class="org-todo done DONE">DONE</span>  444</li>
+</ul>
+<h3 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h3><p>复选框是特殊的列表,在列表的名称前加上’[ ]’即是一个复选框例如:</p>
+<h4 id="TODO-today-arrange"><a href="#TODO-today-arrange" class="headerlink" title="TODO today arrange"></a><span class="org-todo todo TODO">TODO</span> today arrange</h4><ul>
+<li>[-] call someone <code>[1/3]</code><ul>
+<li><input disabled="" type="checkbox"> peter</li>
+<li><input disabled="" type="checkbox"> lasy</li>
+<li><input checked="" disabled="" type="checkbox"> jonh</li>
+</ul>
+</li>
+<li>[-] order food <code>[2/3]</code><ul>
+<li><input checked="" disabled="" type="checkbox"> milk</li>
+<li><input disabled="" type="checkbox"> bread</li>
+<li><input checked="" disabled="" type="checkbox"> dumpling</li>
+</ul>
+</li>
+<li>[-] listen music <code>[33%]</code><ul>
+<li><input disabled="" type="checkbox"> jay chou</li>
+<li><input checked="" disabled="" type="checkbox"> justin biber</li>
+<li><input disabled="" type="checkbox"> mike jackson</li>
+</ul>
+</li>
+</ul>
+<h4 id="操作与快捷键"><a href="#操作与快捷键" class="headerlink" title="操作与快捷键"></a>操作与快捷键</h4><ul>
+<li>C-c C-c和C-c C-x C-b(org-toggle-checkbox)<br>触发复选框的状态</li>
+<li>C-c C-x C-r (org-toggle-radio-button)<br>是得同级的复选框只能选中一个或不选,执行此命令会是同级复选框都处于非选中状态,如果当前复选框是选中的则取消选中,否则选中.</li>
+<li>M-S-RET (org-insert-todo-heading)<br>插入一个新的复选框</li>
+</ul>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>标签是对标题的说明,可以在标题后使用并且一个标题可以含有多个标签,标签的前后都必须有一个冒号</p>
+<h3 id="标签的继承"><a href="#标签的继承" class="headerlink" title="标签的继承"></a>标签的继承</h3><p>标签具有继承性,一个标题如果具有一个或多个标签,那么其下的子项也会继承这些标签.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs org">Meeting with the French group      :work:<br>** Summary by Frank                  :boss:notes:<br>*** TODO Prepare slides for him      :action:<br></code></pre></td></tr></table></figure>
+
+<p>在以上示例中,最后一个todo标题虽然只有一个标签,但其实它会继承其父标签,所以该标题含有work,boss,notes,action四个标签也可以设置一个标签让所有的标签继承,比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs org">#+FILETAGS: :Peter:Boss:Secret:<br></code></pre></td></tr></table></figure>
+
+
+
+<p>这样设置就好像在第0级的标题设置标签一样,所有标题都会继承该标题的标签</p>
+<h4 id="标签操作和快捷键"><a href="#标签操作和快捷键" class="headerlink" title="标签操作和快捷键"></a>标签操作和快捷键</h4><ul>
+<li>C-c C-q (org-set-tags-command)<br>插入一个标签</li>
+<li>C-c C-c<br>与上面功能相同</li>
+</ul>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2>
                 
               </div>
             
@@ -313,7 +575,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>geezer</div>
+          <div>geez6572</div>
         </div>
       
       
